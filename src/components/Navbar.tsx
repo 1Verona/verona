@@ -5,7 +5,7 @@ interface NavbarProps {
   onComplete: () => void;
 }
 
-const FINAL_W = 420;
+const FINAL_W = 260;
 const FINAL_H = 48;
 const FINAL_R = 24;
 
@@ -45,22 +45,14 @@ export default function Navbar({ phase, onComplete }: NavbarProps) {
             VERONA
           </motion.span>
 
-          <motion.div
+          <motion.span
             initial={{ opacity: 0 }}
             animate={isActive ? { opacity: 1 } : undefined}
             transition={{ delay: 2.0, duration: 0.5 }}
-            className="flex items-center gap-5 text-xs font-medium"
+            className="text-xs font-medium text-neutral-500"
           >
-            <a href="#home" className="hover:text-gray-600 transition-colors">
-              Work
-            </a>
-            <a href="#projects" className="hover:text-gray-600 transition-colors">
-              About
-            </a>
-            <a href="#contact" className="hover:text-gray-600 transition-colors">
-              Contact
-            </a>
-          </motion.div>
+            DEV
+          </motion.span>
         </div>
       </motion.nav>
     </div>
