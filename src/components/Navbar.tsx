@@ -3,14 +3,13 @@ import { motion } from "motion/react";
 interface NavbarProps {
   phase: number;
   logoArrived: boolean;
-  onComplete: () => void;
 }
 
 const FINAL_W = 265;
 const FINAL_H = 48;
 const FINAL_R = 24;
 
-export default function Navbar({ phase, logoArrived, onComplete }: NavbarProps) {
+export default function Navbar({ phase, logoArrived }: NavbarProps) {
   const isActive = phase >= 1;
 
   return (

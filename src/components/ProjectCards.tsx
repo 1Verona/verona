@@ -283,8 +283,8 @@ export default function ProjectCards({ phase }: ProjectCardsProps) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{
-                    enter: { delay: 0.2, duration: 0.3 },
-                    exit: { duration: 0.15 },
+                    delay: 0.2,
+                    duration: 0.3,
                   }}
                 >
                   <p className="mt-4 text-sm leading-relaxed text-neutral-600">

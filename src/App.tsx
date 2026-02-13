@@ -35,7 +35,7 @@ export default function App() {
         />
       </div>
       <Logo phase={phase} onDrawComplete={() => { setLogoArrived(true); advancePhase(); }} />
-      <Navbar phase={phase} logoArrived={logoArrived} onComplete={() => {}} />
+      <Navbar phase={phase} logoArrived={logoArrived} />
       <div className="relative z-10">
         <HeroSection phase={phase} onComplete={advancePhase} />
         <ProjectCards phase={phase} />
