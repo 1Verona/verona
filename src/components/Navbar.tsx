@@ -53,7 +53,7 @@ export default function Navbar({ phase, logoArrived }: NavbarProps) {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="text-xs font-medium text-neutral-500"
           >
-            DEV
+            CREATOR
           </motion.span>
         </div>
       </motion.nav>
