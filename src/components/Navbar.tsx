@@ -34,7 +34,7 @@ export default function Navbar({ phase, logoArrived }: NavbarProps) {
       >
         {/* Inner content — logo space (24px) + gap + VERONA ... DEV */}
         <div className="absolute inset-0 flex items-center justify-between px-5">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {/* Placeholder space for the logo that flies in */}
             <div className="w-6 h-6 shrink-0" />
             <motion.span
