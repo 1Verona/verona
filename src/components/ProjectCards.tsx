@@ -42,7 +42,7 @@ const projects = [
     logo: "/terminoted-logo.png",
     description: "A simple TUI-based notes & to-do app for the terminal.",
     details:
-      "Terminoted is a terminal sticky notes and to-do application. Switch between notes and tasks with tab, add items with 'a', toggle completion with 'x', and edit notes inline. Data is stored locally in ~/.terminoted/. Installable via Homebrew.",
+      "Terminoted is a terminal sticky notes and to-do application. Installable via Homebrew.",
     tags: ["JavaScript", "Node.js", "TUI", "CLI"],
     link: "https://github.com/1Verona/Terminoted",
   },
