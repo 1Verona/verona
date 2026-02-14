@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { motion } from "motion/react";
 import Navbar from "./components/Navbar";
 import Logo from "./components/Logo";
 import HeroSection from "./components/HeroSection";
@@ -36,9 +37,18 @@ export default function App() {
       </div>
       <Logo phase={phase} onDrawComplete={() => { setLogoArrived(true); advancePhase(); }} />
       <Navbar phase={phase} logoArrived={logoArrived} />
-      <div className="relative z-10">
+      <div className="relative z-10 flex min-h-screen flex-col">
         <HeroSection phase={phase} onComplete={advancePhase} />
         <ProjectCards phase={phase} />
+        <div className="flex-1" />
+        <motion.footer
+          initial={{ opacity: 0 }}
+          animate={phase >= 2 ? { opacity: 1 } : undefined}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="pb-4 pt-0 text-center text-sm text-neutral-400"
+        >
+          &copy; 2026 João Verona
+        </motion.footer>
       </div>
     </div>
   );

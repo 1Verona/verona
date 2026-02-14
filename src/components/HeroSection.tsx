@@ -54,10 +54,15 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
         </motion.h1>
         <motion.p
           variants={itemVariants}
+          className="text-lg font-medium text-neutral-400"
+        >
+          aka João Verona
+        </motion.p>
+        <motion.p
+          variants={itemVariants}
           className="max-w-md text-lg leading-relaxed text-neutral-500"
         >
-          A developer crafting delightful digital experiences.
-          Passionate about clean code and beautiful interfaces.
+          A developer crafting solutions. Passionate about UX, UI and AI. Bringing the best AI can give to your specific needs.
         </motion.p>
         <motion.div variants={itemVariants}>
           <SocialLinks />

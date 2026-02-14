@@ -27,6 +27,16 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const projects = [
   {
+    id: "ion",
+    title: "iON",
+    logo: "/ion-logo.png",
+    description: "An iOS personal assistant app for life organization.",
+    details:
+      "iON is an iOS personal assistant built with Swift and SwiftUI. It provides life organization features including tasks, reminders, calendar, AI chat, finances, and shopping lists — powered by AI.",
+    tags: ["Swift", "SwiftUI", "iOS", "Firebase"],
+    link: "https://github.com/1Verona/iON",
+  },
+  {
     id: "terminoted",
     title: "Terminoted",
     logo: "/terminoted-logo.png",
@@ -35,15 +45,6 @@ const projects = [
       "Terminoted is a terminal sticky notes and to-do application. Switch between notes and tasks with tab, add items with 'a', toggle completion with 'x', and edit notes inline. Data is stored locally in ~/.terminoted/. Installable via Homebrew.",
     tags: ["JavaScript", "Node.js", "TUI", "CLI"],
     link: "https://github.com/1Verona/Terminoted",
-  },
-  {
-    id: "proj-2",
-    title: "Project Two",
-    logo: null,
-    description: "A brief description of this project and the technologies used.",
-    details: "More details coming soon.",
-    tags: ["Swift", "SwiftUI", "iOS"],
-    link: null,
   },
   {
     id: "proj-3",

@@ -5,7 +5,7 @@ interface NavbarProps {
   logoArrived: boolean;
 }
 
-const FINAL_W = 265;
+const FINAL_W = 290;
 const FINAL_H = 48;
 const FINAL_R = 24;
 
@@ -33,7 +33,7 @@ export default function Navbar({ phase, logoArrived }: NavbarProps) {
         className="relative flex items-center justify-between overflow-hidden bg-white/80 backdrop-blur-md border border-white/20 shadow-lg"
       >
         {/* Inner content — logo space (24px) + gap + VERONA ... DEV */}
-        <div className="absolute inset-0 flex items-center justify-between px-3">
+        <div className="absolute inset-0 flex items-center justify-between px-5">
           <div className="flex items-center gap-2">
             {/* Placeholder space for the logo that flies in */}
             <div className="w-6 h-6 shrink-0" />
