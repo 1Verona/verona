@@ -74,7 +74,7 @@ export default function FloatingDots({ phase, scale = 1 }: FloatingDotsProps) {
     // Wait for memoji to fade in (~0.5s item duration), then expand rings
     const timeout = setTimeout(async () => {
       // Entrance: stagger each ring from center outward
-      const ringEls = scope.current?.querySelectorAll<HTMLElement>("[data-ring]");
+      const ringEls = scope.current?.querySelectorAll("[data-ring]") as NodeListOf<HTMLElement> | undefined;
       if (!ringEls) return;
 
       for (let i = ringEls.length - 1; i >= 0; i--) {
