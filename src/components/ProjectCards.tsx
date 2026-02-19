@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 interface ProjectCardsProps {
   phase: number;
+  isDark: boolean;
 }
 
 const containerVariants = {
@@ -84,7 +85,7 @@ const EXP_ICON = 64; // h-16
 const EXP_GAP = 20; // gap-5
 const EXP_FONT_TITLE = 20; // text-xl
 
-export default function ProjectCards({ phase }: ProjectCardsProps) {
+export default function ProjectCards({ phase, isDark }: ProjectCardsProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [closingId, setClosingId] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<CardRect | null>(null);
@@ -150,7 +151,13 @@ export default function ProjectCards({ phase }: ProjectCardsProps) {
               if (isClosing && !isSelected) setClosingId(null);
             }}
             className="cursor-pointer rounded-2xl p-5 hover:scale-[1.02] transition-transform duration-300"
-            style={{
+            style={isDark ? {
+              background: "rgba(30, 30, 35, 0.6)",
+              backdropFilter: "blur(20px) saturate(1.4)",
+              WebkitBackdropFilter: "blur(20px) saturate(1.4)",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
+              boxShadow: "0 2px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06)",
+            } : {
               background: "rgba(255, 255, 255, 0.45)",
               backdropFilter: "blur(20px) saturate(1.4)",
               WebkitBackdropFilter: "blur(20px) saturate(1.4)",
@@ -166,7 +173,7 @@ export default function ProjectCards({ phase }: ProjectCardsProps) {
                 )}
               </div>
               <div className="min-w-0">
-                <h3 className="text-base font-semibold text-neutral-900">
+                <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
                   {project.title}
                 </h3>
                 <p className="mt-1 text-sm leading-relaxed text-neutral-500">
@@ -231,8 +238,8 @@ export default function ProjectCards({ phase }: ProjectCardsProps) {
                 opacity: { duration: 0.2, delay: 0.35, ease: "easeOut" },
               }}
               onClick={(e) => e.stopPropagation()}
-              className="fixed z-50 bg-white shadow-2xl overflow-hidden"
-              style={{ borderRadius: 16, border: "1px solid rgba(0, 0, 0, 0.06)" }}
+              className="fixed z-50 bg-white dark:bg-neutral-900 shadow-2xl overflow-hidden"
+              style={{ borderRadius: 16, border: isDark ? "1px solid rgba(255,255,255,0.1)" : "1px solid rgba(0, 0, 0, 0.06)" }}
             >
               <div className="fixed inset-0 -z-10" onClick={handleClose} />
 
@@ -264,7 +271,7 @@ export default function ProjectCards({ phase }: ProjectCardsProps) {
                   </motion.div>
                   <div className="min-w-0">
                     <motion.h3
-                      className="font-semibold text-neutral-900"
+                      className="font-semibold text-neutral-900 dark:text-neutral-100"
                       initial={{ fontSize: CARD_FONT_TITLE }}
                       animate={{ fontSize: EXP_FONT_TITLE }}
                       exit={{ fontSize: CARD_FONT_TITLE }}
@@ -295,7 +302,7 @@ export default function ProjectCards({ phase }: ProjectCardsProps) {
                     {selected.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600"
+                        className="rounded-full bg-neutral-100 dark:bg-neutral-800 px-3 py-1 text-xs font-medium text-neutral-600 dark:text-neutral-300"
                       >
                         {tag}
                       </span>
@@ -306,7 +313,7 @@ export default function ProjectCards({ phase }: ProjectCardsProps) {
                       href={selected.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 hover:text-neutral-600 transition-colors"
+                      className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
                     >
                       View on GitHub
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -3,13 +3,32 @@ import { motion } from "motion/react";
 interface NavbarProps {
   phase: number;
   logoArrived: boolean;
+  isDark: boolean;
+  toggleDark: () => void;
 }
 
 const FINAL_W = 290;
 const FINAL_H = 48;
 const FINAL_R = 24;
 
-export default function Navbar({ phase, logoArrived }: NavbarProps) {
+function SunIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  );
+}
+
+function MoonIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  );
+}
+
+export default function Navbar({ phase, logoArrived, isDark, toggleDark }: NavbarProps) {
   const isActive = phase >= 1;
 
   return (
@@ -30,9 +49,9 @@ export default function Navbar({ phase, logoArrived }: NavbarProps) {
         }}
         onAnimationComplete={() => {}}
         style={{ willChange: "width, opacity, transform" }}
-        className="relative flex items-center justify-between overflow-hidden bg-white/80 backdrop-blur-md border border-white/20 shadow-lg"
+        className="relative flex items-center justify-between overflow-hidden bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg"
       >
-        {/* Inner content — logo space (24px) + gap + VERONA ... DEV */}
+        {/* Inner content — logo space (24px) + gap + VERONA + toggle ... CREATOR */}
         <div className="absolute inset-0 flex items-center justify-between px-5">
           <div className="flex items-center gap-3">
             {/* Placeholder space for the logo that flies in */}
@@ -41,17 +60,27 @@ export default function Navbar({ phase, logoArrived }: NavbarProps) {
               initial={{ opacity: 0 }}
               animate={logoArrived ? { opacity: 1 } : undefined}
               transition={{ duration: 0.5 }}
-              className="font-bold text-sm tracking-tighter whitespace-nowrap"
+              className="font-bold text-sm tracking-tighter whitespace-nowrap dark:text-neutral-100"
             >
               VERONA
             </motion.span>
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={logoArrived ? { opacity: 1 } : undefined}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              onClick={toggleDark}
+              className="flex items-center justify-center w-6 h-6 rounded-full text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDark ? <SunIcon /> : <MoonIcon />}
+            </motion.button>
           </div>
 
           <motion.span
             initial={{ opacity: 0 }}
             animate={logoArrived ? { opacity: 1 } : undefined}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-xs font-medium text-neutral-500"
+            className="text-xs font-medium text-neutral-500 dark:text-neutral-400"
           >
             CREATOR
           </motion.span>

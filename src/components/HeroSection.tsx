@@ -51,7 +51,7 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
         <div className="flex items-center gap-4 md:block">
           <motion.h1
             variants={itemVariants}
-            className="text-5xl font-semibold tracking-tight text-neutral-900 md:text-6xl"
+            className="text-5xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 md:text-6xl"
           >
             Hi, I'm Verona
           </motion.h1>

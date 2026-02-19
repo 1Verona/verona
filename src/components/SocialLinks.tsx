@@ -5,7 +5,7 @@ export default function SocialLinks() {
         href="https://github.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+        className="text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
       >
         <svg
           width="22"
@@ -18,7 +18,7 @@ export default function SocialLinks() {
       </a>
       <a
         href="mailto:joaoverona@aethertechai.com"
-        className="text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+        className="text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors duration-200"
       >
         <svg
           width="22"
