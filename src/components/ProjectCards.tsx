@@ -157,6 +157,7 @@ export default function ProjectCards({ phase, isDark }: ProjectCardsProps) {
               WebkitBackdropFilter: "blur(20px) saturate(1.4)",
               border: "1px solid rgba(255, 255, 255, 0.08)",
               boxShadow: "0 2px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06)",
+              transition: "background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease",
             } : {
               background: "rgba(255, 255, 255, 0.45)",
               backdropFilter: "blur(20px) saturate(1.4)",
@@ -164,6 +165,7 @@ export default function ProjectCards({ phase, isDark }: ProjectCardsProps) {
               border: "1px solid rgba(255, 255, 255, 0.6)",
               boxShadow:
                 "0 2px 16px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(0, 0, 0, 0.03)",
+              transition: "background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease",
             }}
           >
             <div className="flex items-start gap-4">

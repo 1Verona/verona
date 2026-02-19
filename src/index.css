@@ -19,4 +19,10 @@
     @apply bg-white text-neutral-900 font-sans dark:bg-neutral-950 dark:text-neutral-100;
     margin: 0;
   }
+
+  *, *::before, *::after {
+    transition-property: color, background-color, border-color, fill, stroke;
+    transition-timing-function: ease;
+    transition-duration: 300ms;
+  }
 }
