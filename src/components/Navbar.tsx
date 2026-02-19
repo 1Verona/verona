@@ -56,14 +56,6 @@ export default function Navbar({ phase, logoArrived, isDark, toggleDark }: Navba
           <div className="flex items-center gap-3">
             {/* Placeholder space for the logo that flies in */}
             <div className="w-6 h-6 shrink-0" />
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={logoArrived ? { opacity: 1 } : undefined}
-              transition={{ duration: 0.5 }}
-              className="font-bold text-sm tracking-tighter whitespace-nowrap dark:text-neutral-100"
-            >
-              VERONA
-            </motion.span>
             <motion.button
               initial={{ opacity: 0 }}
               animate={logoArrived ? { opacity: 1 } : undefined}
@@ -74,6 +66,14 @@ export default function Navbar({ phase, logoArrived, isDark, toggleDark }: Navba
             >
               {isDark ? <SunIcon /> : <MoonIcon />}
             </motion.button>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={logoArrived ? { opacity: 1 } : undefined}
+              transition={{ duration: 0.5 }}
+              className="font-bold text-sm tracking-tighter whitespace-nowrap dark:text-neutral-100"
+            >
+              VERONA
+            </motion.span>
           </div>
 
           <motion.span

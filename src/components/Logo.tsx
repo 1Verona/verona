@@ -69,7 +69,7 @@ export default function Logo({ phase, onDrawComplete }: LogoProps) {
   return (
     <div
       ref={scope}
-      className="fixed z-[60] pointer-events-none"
+      className="fixed z-[60] pointer-events-none text-neutral-900 dark:text-white"
       style={{
         opacity: 0,
         top: "calc(50% - 100px)",
@@ -90,17 +90,17 @@ export default function Logo({ phase, onDrawComplete }: LogoProps) {
         <motion.path
           className="logo-path-1"
           d={PATH_1}
-          stroke="#171717"
+          stroke="currentColor"
           strokeWidth="6"
-          fill="#171717"
+          fill="currentColor"
           initial={{ pathLength: 0, fillOpacity: 0 }}
         />
         <motion.path
           className="logo-path-2"
           d={PATH_2}
-          stroke="#171717"
+          stroke="currentColor"
           strokeWidth="6"
-          fill="#171717"
+          fill="currentColor"
           initial={{ pathLength: 0, fillOpacity: 0 }}
         />
       </svg>
