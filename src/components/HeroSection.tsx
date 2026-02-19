@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import SocialLinks from "./SocialLinks";
-import FloatingDots from "./FloatingDots";
 
 interface HeroSectionProps {
   phase: number;
@@ -61,7 +60,6 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
             variants={itemVariants}
             className="relative h-36 w-36 shrink-0 md:hidden"
           >
-            <FloatingDots phase={phase} scale={0.4} />
             <img
               src="/memoji.png"
               alt="Memoji"
@@ -92,12 +90,11 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
         </motion.div>
       </div>
 
-      {/* Right: Memoji with dots – desktop only */}
+      {/* Right: Memoji – desktop only */}
       <motion.div
         variants={itemVariants}
         className="relative hidden shrink-0 md:block"
       >
-        <FloatingDots phase={phase} />
         <img
           src="/memoji.png"
           alt="Memoji"
