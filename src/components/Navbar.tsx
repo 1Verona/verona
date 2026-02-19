@@ -54,8 +54,6 @@ export default function Navbar({ phase, logoArrived, isDark, toggleDark }: Navba
         {/* Inner content — logo space (24px) + gap + VERONA + toggle ... CREATOR */}
         <div className="absolute inset-0 flex items-center justify-between px-5">
           <div className="flex items-center gap-3">
-            {/* Placeholder space for the logo that flies in */}
-            <div className="w-6 h-6 shrink-0" />
             <motion.button
               initial={{ opacity: 0 }}
               animate={logoArrived ? { opacity: 1 } : undefined}
@@ -66,6 +64,8 @@ export default function Navbar({ phase, logoArrived, isDark, toggleDark }: Navba
             >
               {isDark ? <SunIcon /> : <MoonIcon />}
             </motion.button>
+            {/* Placeholder space for the logo that flies in */}
+            <div className="w-6 h-6 shrink-0" />
             <motion.span
               initial={{ opacity: 0 }}
               animate={logoArrived ? { opacity: 1 } : undefined}

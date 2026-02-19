@@ -51,7 +51,7 @@ export default function Logo({ phase, onDrawComplete }: LogoProps) {
         scope.current,
         {
           top: "36px",
-          left: "calc(50% - 109px)",
+          left: "calc(50% - 73px)",
           width: "24px",
           height: "24px",
           marginLeft: "0px",
