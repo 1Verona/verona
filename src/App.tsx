@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Logo from "./components/Logo";
 import HeroSection from "./components/HeroSection";
 import ProjectCards from "./components/ProjectCards";
+import VideoStack from "./components/VideoStack";
 
 export default function App() {
   const [phase, setPhase] = useState(0);
@@ -73,6 +74,7 @@ export default function App() {
       <div className="relative z-10 flex min-h-screen flex-col">
         <HeroSection phase={phase} onComplete={advancePhase} />
         <ProjectCards phase={phase} isDark={isDark} />
+        <VideoStack phase={phase} isDark={isDark} />
         <div className="flex-1" />
         <motion.footer
           initial={{ opacity: 0 }}

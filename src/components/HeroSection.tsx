@@ -82,8 +82,8 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
           variants={itemVariants}
           className="max-w-md text-lg leading-relaxed text-neutral-500"
         >
-          A developer crafting solutions. Passionate about UX, UI and AI.
-          Bringing the best AI can give to your specific needs.
+          A developer & video editor crafting experiences. Passionate about
+          UX, UI and AI. Bringing the best AI can give to your specific needs.
         </motion.p>
         <motion.div variants={itemVariants}>
           <SocialLinks />

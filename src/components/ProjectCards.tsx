@@ -49,20 +49,11 @@ const projects = [
   },
   {
     id: "proj-3",
-    title: "Project Three",
+    title: "Coming Soon",
     logo: null,
-    description: "A brief description of this project and the technologies used.",
+    description: "Something new is being built. Stay tuned.",
     details: "More details coming soon.",
-    tags: ["Node.js", "PostgreSQL", "Docker"],
-    link: null,
-  },
-  {
-    id: "proj-4",
-    title: "Project Four",
-    logo: null,
-    description: "A brief description of this project and the technologies used.",
-    details: "More details coming soon.",
-    tags: ["Python", "FastAPI", "AWS"],
+    tags: [],
     link: null,
   },
 ];
@@ -144,7 +135,7 @@ export default function ProjectCards({ phase, isDark }: ProjectCardsProps) {
             variants={cardVariants}
             onClick={() => handleSelect(project.id)}
             {...(needsFade ? {
-              animate: { opacity: isSelected ? 0 : 1 },
+              animate: { opacity: isSelected ? 0 : 1, scale: 1 },
               transition: { duration: isClosing ? 0.3 : 0.15, delay: isClosing ? 0.2 : 0, ease: "easeOut" as const },
             } : {})}
             onAnimationComplete={() => {
