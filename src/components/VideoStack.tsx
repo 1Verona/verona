@@ -68,8 +68,25 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
   const [hoveredId, setHoveredId]   = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<CardRect | null>(null);
-  const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const innerRefs  = useRef<Record<string, HTMLDivElement | null>>({});
+  const [volume, setVolume]         = useState(0.7);
+  const [isPlaying, setIsPlaying]   = useState(true);
+  const leaveTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const innerRefs    = useRef<Record<string, HTMLDivElement | null>>({});
+  const lightboxVideo = useRef<HTMLVideoElement | null>(null);
+
+  const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = parseFloat(e.target.value);
+    setVolume(v);
+    if (lightboxVideo.current) lightboxVideo.current.volume = v;
+  };
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const vid = lightboxVideo.current;
+    if (!vid) return;
+    if (vid.paused) { vid.play(); setIsPlaying(true); }
+    else            { vid.pause(); setIsPlaying(false); }
+  };
 
   const handleEnter = (id: string) => {
     if (leaveTimer.current) clearTimeout(leaveTimer.current);
@@ -163,7 +180,7 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
                     background: video.gradient || "#111",
                     overflow: "hidden",
                     cursor: "pointer",
-                    pointerEvents: hoveredId !== null && !isHovered ? "none" : "auto",
+                    pointerEvents: "auto",
                     boxShadow: isHovered
                       ? "0 18px 36px rgba(0,0,0,0.45), 0 6px 14px rgba(0,0,0,0.22)"
                       : "0 6px 20px rgba(0,0,0,0.28)",
@@ -290,12 +307,13 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
             >
               {selected.src && (
                 <video
+                  ref={lightboxVideo}
                   src={selected.src}
                   autoPlay
-                  muted
                   loop
                   playsInline
                   className="absolute inset-0 h-full w-full object-cover"
+                  onCanPlay={(e) => { (e.target as HTMLVideoElement).volume = volume; }}
                 />
               )}
 
@@ -314,19 +332,59 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
                 </svg>
               </motion.div>
 
-              {/* Title bar */}
+              {/* Bottom bar — title + controls, all in the dark gradient */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ delay: 0.25, duration: 0.25 }}
-                className="absolute bottom-0 left-0 right-0 px-4 py-3"
+                onClick={(e) => e.stopPropagation()}
+                className="absolute bottom-0 left-0 right-0 px-4 pt-6 pb-3 flex flex-col gap-2"
                 style={{
-                  background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)",
+                  background: "linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%)",
                 }}
               >
-                <p className="text-xs font-medium text-white/90">{selected.title}</p>
-                <p className="text-[10px] text-white/50">{selected.tag}</p>
+                {/* Title + tag */}
+                <div>
+                  <p className="text-xs font-medium text-white/90">{selected.title}</p>
+                  <p className="text-[10px] text-white/50">{selected.tag}</p>
+                </div>
+
+                {/* Controls row */}
+                <div className="flex items-center gap-2">
+                  {/* Play / Pause — bare icon, no circle */}
+                  <button onClick={togglePlay} className="shrink-0 flex items-center justify-center" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
+                    {isPlaying ? (
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="white">
+                        <rect x="5" y="4" width="4" height="16" rx="1" />
+                        <rect x="15" y="4" width="4" height="16" rx="1" />
+                      </svg>
+                    ) : (
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="white">
+                        <polygon points="5 3 19 12 5 21" />
+                      </svg>
+                    )}
+                  </button>
+
+                  {/* Speaker — bare icon */}
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="white" style={{ opacity: volume === 0 ? 0.4 : 0.8, flexShrink: 0 }}>
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                    {volume > 0.05 && <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
+                    {volume > 0.55 && <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
+                  </svg>
+
+                  {/* Horizontal volume slider */}
+                  <input
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.01}
+                    value={volume}
+                    onChange={handleVolume}
+                    className="flex-1"
+                    style={{ cursor: "pointer", accentColor: "rgba(255,255,255,0.85)", height: 3 }}
+                  />
+                </div>
               </motion.div>
             </motion.div>
           </>
