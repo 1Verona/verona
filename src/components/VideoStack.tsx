@@ -80,6 +80,12 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
     leaveTimer.current = setTimeout(() => setHoveredId(null), 80);
   };
 
+  // Pull vector: move card along its own axis (away from the fan pivot)
+  const pullVec = (angle: number, dist = 22) => {
+    const rad = (angle * Math.PI) / 180;
+    return { x: Math.sin(rad) * dist, y: -Math.cos(rad) * dist };
+  };
+
   const handleClick = (id: string) => {
     const el = innerRefs.current[id];
     if (el) {
@@ -119,20 +125,22 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
 
         <div className="relative mx-auto" style={{ height: CONTAINER_H }}>
           {videos.map((video, i) => {
-            const angle    = ANGLES[i];
-            const isHovered = hoveredId === video.id;
+            const angle      = ANGLES[i];
+            const isHovered  = hoveredId === video.id;
             const isSelected = selectedId === video.id;
+            const pull       = pullVec(angle);
 
             return (
+              // Outer: handles the pull-out translation
               <motion.div
                 key={video.id}
-                animate={{ y: isHovered ? -24 : 0 }}
-                transition={{ duration: 0.32, ease }}
+                animate={isHovered ? { x: pull.x, y: pull.y } : { x: 0, y: 0 }}
+                transition={{ duration: 0.35, ease }}
                 style={{
                   position: "absolute",
                   left: `calc(50% - ${W / 2}px)`,
                   top: CARD_TOP,
-                  zIndex: isHovered ? 20 : i + 1,
+                  zIndex: i + 1,
                   pointerEvents: "none",
                 }}
               >
@@ -143,10 +151,10 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
                   onClick={() => handleClick(video.id)}
                   animate={{
                     rotate: angle,
-                    scale: isHovered ? 1.07 : 1,
+                    scale:   isHovered ? 1.05 : 1,
                     opacity: isSelected ? 0 : 1,
                   }}
-                  transition={{ duration: 0.32, ease }}
+                  transition={{ duration: 0.35, ease }}
                   style={{
                     width: W,
                     height: H,
@@ -157,7 +165,7 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
                     cursor: "pointer",
                     pointerEvents: hoveredId !== null && !isHovered ? "none" : "auto",
                     boxShadow: isHovered
-                      ? "0 28px 56px rgba(0,0,0,0.52), 0 8px 20px rgba(0,0,0,0.28)"
+                      ? "0 18px 36px rgba(0,0,0,0.45), 0 6px 14px rgba(0,0,0,0.22)"
                       : "0 6px 20px rgba(0,0,0,0.28)",
                     border: isDark
                       ? "1px solid rgba(255,255,255,0.08)"
