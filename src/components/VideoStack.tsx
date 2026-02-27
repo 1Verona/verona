@@ -70,14 +70,24 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
   const [originRect, setOriginRect] = useState<CardRect | null>(null);
   const [volume, setVolume]         = useState(0.7);
   const [isPlaying, setIsPlaying]   = useState(true);
-  const leaveTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const innerRefs    = useRef<Record<string, HTMLDivElement | null>>({});
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration]       = useState(0);
+  const [showVolume, setShowVolume]   = useState(false);
+  const leaveTimer    = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const innerRefs     = useRef<Record<string, HTMLDivElement | null>>({});
   const lightboxVideo = useRef<HTMLVideoElement | null>(null);
+  const volHideTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseFloat(e.target.value);
     setVolume(v);
     if (lightboxVideo.current) lightboxVideo.current.volume = v;
+  };
+
+  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const t = parseFloat(e.target.value);
+    setCurrentTime(t);
+    if (lightboxVideo.current) lightboxVideo.current.currentTime = t;
   };
 
   const togglePlay = (e: React.MouseEvent) => {
@@ -86,6 +96,15 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
     if (!vid) return;
     if (vid.paused) { vid.play(); setIsPlaying(true); }
     else            { vid.pause(); setIsPlaying(false); }
+  };
+
+  const handleVolumeEnter = () => {
+    if (volHideTimer.current) clearTimeout(volHideTimer.current);
+    setShowVolume(true);
+  };
+
+  const handleVolumeLeave = () => {
+    volHideTimer.current = setTimeout(() => setShowVolume(false), 300);
   };
 
   const handleEnter = (id: string) => {
@@ -112,7 +131,12 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
     setSelectedId(id);
   };
 
-  const handleClose = () => setSelectedId(null);
+  const handleClose = () => {
+    setSelectedId(null);
+    setCurrentTime(0);
+    setDuration(0);
+    setIsPlaying(true);
+  };
 
   const selected = videos.find((v) => v.id === selectedId);
   const expLeft  = typeof window !== "undefined" ? window.innerWidth  / 2 - EXP_W / 2 : 0;
@@ -314,6 +338,8 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
                   playsInline
                   className="absolute inset-0 h-full w-full object-cover"
                   onCanPlay={(e) => { (e.target as HTMLVideoElement).volume = volume; }}
+                  onTimeUpdate={(e) => setCurrentTime((e.target as HTMLVideoElement).currentTime)}
+                  onLoadedMetadata={(e) => setDuration((e.target as HTMLVideoElement).duration)}
                 />
               )}
 
@@ -350,9 +376,9 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
                   <p className="text-[10px] text-white/50">{selected.tag}</p>
                 </div>
 
-                {/* Controls row */}
+                {/* Controls row: [play] [progress] [volume icon → vertical popup] */}
                 <div className="flex items-center gap-2">
-                  {/* Play / Pause — bare icon, no circle */}
+                  {/* Play / Pause */}
                   <button onClick={togglePlay} className="shrink-0 flex items-center justify-center" style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}>
                     {isPlaying ? (
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="white">
@@ -366,24 +392,60 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
                     )}
                   </button>
 
-                  {/* Speaker — bare icon */}
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="white" style={{ opacity: volume === 0 ? 0.4 : 0.8, flexShrink: 0 }}>
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                    {volume > 0.05 && <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
-                    {volume > 0.55 && <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
-                  </svg>
-
-                  {/* Horizontal volume slider */}
+                  {/* Progress bar */}
                   <input
                     type="range"
                     min={0}
-                    max={1}
+                    max={duration || 1}
                     step={0.01}
-                    value={volume}
-                    onChange={handleVolume}
+                    value={currentTime}
+                    onChange={handleSeek}
                     className="flex-1"
                     style={{ cursor: "pointer", accentColor: "rgba(255,255,255,0.85)", height: 3 }}
                   />
+
+                  {/* Volume icon + vertical popup */}
+                  <div
+                    className="relative shrink-0 flex items-center justify-center"
+                    style={{ cursor: "pointer" }}
+                    onMouseEnter={handleVolumeEnter}
+                    onMouseLeave={handleVolumeLeave}
+                  >
+                    {/* Vertical slider popup */}
+                    {showVolume && (
+                      <div
+                        className="absolute bottom-full mb-2 flex items-center justify-center rounded-lg py-2"
+                        style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(8px)", left: "50%", transform: "translateX(-50%)" }}
+                        onMouseEnter={handleVolumeEnter}
+                        onMouseLeave={handleVolumeLeave}
+                      >
+                        <input
+                          type="range"
+                          min={0}
+                          max={1}
+                          step={0.01}
+                          value={volume}
+                          onChange={handleVolume}
+                          onClick={(e) => e.stopPropagation()}
+                          style={{
+                            writingMode: "vertical-lr" as const,
+                            direction: "rtl" as const,
+                            WebkitAppearance: "slider-vertical",
+                            height: 72,
+                            width: 4,
+                            cursor: "pointer",
+                            accentColor: "rgba(255,255,255,0.85)",
+                          }}
+                        />
+                      </div>
+                    )}
+                    {/* Speaker icon */}
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="white" style={{ opacity: volume === 0 ? 0.4 : 0.85 }}>
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                      {volume > 0.05 && <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
+                      {volume > 0.55 && <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
+                    </svg>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>

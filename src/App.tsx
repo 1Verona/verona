@@ -24,6 +24,7 @@ export default function App() {
     return () => clearTimeout(timer);
   }, []);
 
+
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDark);
   }, []);
