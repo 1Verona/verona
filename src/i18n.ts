@@ -36,15 +36,15 @@ export const t = {
         role: "Lead Video Editor — Bulky Bacon · Prota Games",
         period: "2023 – 2024",
         description:
-          "As the main editor of Bulky Bacon, a Blox Fruits-focused gaming channel under Prota Games, I built the channel's editing style from the ground up. In roughly two months we reached 200k subscribers and nearly 80 million organic views by crafting high-retention edits and an engaged community. I also onboarded and mentored a second editor, teaching audience-retention techniques and narrative flow. Alongside organic content, I integrated subtle in-video ads across multiple videos.",
-        tags: ["VVSA", "Watch Time", "Audience Retention", "Link Conversion", "Short-form", "Storytelling", "Mentorship"],
+          "As the main editor of Bulky Bacon, a Blox Fruits-focused gaming channel under Prota Games, I built the channel's editing style from the ground up. In roughly two months we reached 200k subscribers and nearly 80 million organic views by crafting high-retention edits and an engaged community. I also onboarded and mentored a second editor, teaching audience-retention techniques and narrative flow. Alongside organic content, I integrated subtle in-video ads across multiple videos. I also used AI voice generation tools like ElevenLabs to produce voiceovers and enhance the audio production pipeline.",
+        tags: ["VVSA", "Watch Time", "Audience Retention", "Link Conversion", "Short-form", "Storytelling", "Mentorship", "ElevenLabs"],
       },
     },
     videos: {
       label: "Creative Work",
       heading: "Video Editing",
       description:
-        "Beyond code, I craft visual stories through motion and rhythm — from cinematic edits to short reels.",
+        "Beyond code, I craft visual stories through motion and rhythm — from cinematic edits to short reels. As an AI specialist, I apply cutting-edge AI tools across every stage of the editing process.",
     },
     threed: {
       label: "3D",
@@ -94,15 +94,15 @@ export const t = {
         role: "Editor Principal — Bulky Bacon · Prota Games",
         period: "2023 – 2024",
         description:
-          "Como editor principal do Bulky Bacon, canal focado em Blox Fruits sob a Prota Games, construí o estilo de edição do canal do zero. Em cerca de dois meses atingimos 200k inscritos e quase 80 milhões de visualizações orgânicas, criando uma comunidade ativa por meio de edições de alta retenção. Também integrei e treinei um segundo editor, ensinando técnicas de retenção de público e construção de narrativa. Paralelamente ao conteúdo orgânico, implementei anúncios sutis em múltiplos vídeos.",
-        tags: ["VVSA", "Watch Time", "Retenção de Público", "Conversão de Links", "Short-form", "Storytelling", "Mentoria"],
+          "Como editor principal do Bulky Bacon, canal focado em Blox Fruits sob a Prota Games, construí o estilo de edição do canal do zero. Em cerca de dois meses atingimos 200k inscritos e quase 80 milhões de visualizações orgânicas, criando uma comunidade ativa por meio de edições de alta retenção. Também integrei e treinei um segundo editor, ensinando técnicas de retenção de público e construção de narrativa. Paralelamente ao conteúdo orgânico, implementei anúncios sutis em múltiplos vídeos. Utilizei também ferramentas de geração de voz com IA como o ElevenLabs para produzir voiceovers e aprimorar o pipeline de produção de áudio.",
+        tags: ["VVSA", "Watch Time", "Retenção de Público", "Conversão de Links", "Short-form", "Storytelling", "Mentoria", "ElevenLabs"],
       },
     },
     videos: {
       label: "Trabalho Criativo",
       heading: "Edição de Vídeo",
       description:
-        "Além do código, crio histórias visuais através do movimento e ritmo — de edições cinemáticas a reels curtos.",
+        "Além do código, crio histórias visuais através do movimento e ritmo — de edições cinemáticas a reels curtos. Como especialista em IA, aplico ferramentas de inteligência artificial em todas as etapas do processo de edição.",
     },
     threed: {
       label: "3D",
