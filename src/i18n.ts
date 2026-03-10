@@ -46,6 +46,17 @@ export const t = {
       description:
         "Beyond code, I craft visual stories through motion and rhythm — from cinematic edits to short reels.",
     },
+    threed: {
+      label: "3D",
+      heading: "3D Design",
+      description:
+        "I use Blender for modeling and rendering — mostly for creative projects that need a three-dimensional touch.",
+      skills: [
+        { name: "Modeling", desc: "Hard-surface and organic modeling in Blender." },
+        { name: "Rendering", desc: "Cycles & EEVEE renders with lighting and materials." },
+        { name: "Scene Design", desc: "Composing scenes for visual projects and mockups." },
+      ],
+    },
     footer: "© 2026 João Verona",
   },
   pt: {
@@ -92,6 +103,17 @@ export const t = {
       heading: "Edição de Vídeo",
       description:
         "Além do código, crio histórias visuais através do movimento e ritmo — de edições cinemáticas a reels curtos.",
+    },
+    threed: {
+      label: "3D",
+      heading: "Design 3D",
+      description:
+        "Uso Blender para modelagem e renderização — principalmente em projetos criativos que precisam de uma dimensão extra.",
+      skills: [
+        { name: "Modelagem", desc: "Modelagem hard-surface e orgânica no Blender." },
+        { name: "Renderização", desc: "Renders com Cycles & EEVEE, iluminação e materiais." },
+        { name: "Design de Cenas", desc: "Composição de cenas para projetos visuais e mockups." },
+      ],
     },
     footer: "© 2026 João Verona",
   },

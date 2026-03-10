@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { type Lang, t } from "../i18n";
 
@@ -96,7 +96,7 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<CardRect | null>(null);
   const [volume, setVolume]         = useState(0.7);
-  const [isPlaying, setIsPlaying]   = useState(true);
+  const [isPlaying, setIsPlaying]   = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration]       = useState(0);
   const [showVolume, setShowVolume]   = useState(false);
@@ -104,6 +104,21 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
   const innerRefs     = useRef<Record<string, HTMLDivElement | null>>({});
   const lightboxVideo = useRef<HTMLVideoElement | null>(null);
   const volHideTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Explicitly play when lightbox opens (autoPlay is blocked inside animations)
+  useEffect(() => {
+    if (!selectedId) return;
+    setIsPlaying(false);
+    const timer = setTimeout(() => {
+      const vid = lightboxVideo.current;
+      if (!vid) return;
+      vid.volume = volume;
+      vid.play()
+        .then(() => setIsPlaying(true))
+        .catch(() => setIsPlaying(false));
+    }, 460); // after expand animation finishes
+    return () => clearTimeout(timer);
+  }, [selectedId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseFloat(e.target.value);
@@ -159,10 +174,11 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
   };
 
   const handleClose = () => {
+    lightboxVideo.current?.pause();
     setSelectedId(null);
     setCurrentTime(0);
     setDuration(0);
-    setIsPlaying(true);
+    setIsPlaying(false);
   };
 
   const selected = videos.find((v) => v.id === selectedId);
@@ -363,7 +379,13 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
                   loop
                   playsInline
                   className="absolute inset-0 h-full w-full object-cover"
-                  onCanPlay={(e) => { (e.target as HTMLVideoElement).volume = volume; }}
+                  onCanPlay={(e) => {
+                    const vid = e.target as HTMLVideoElement;
+                    vid.volume = volume;
+                    vid.play()
+                      .then(() => setIsPlaying(true))
+                      .catch(() => setIsPlaying(false));
+                  }}
                   onTimeUpdate={(e) => setCurrentTime((e.target as HTMLVideoElement).currentTime)}
                   onLoadedMetadata={(e) => setDuration((e.target as HTMLVideoElement).duration)}
                 />
