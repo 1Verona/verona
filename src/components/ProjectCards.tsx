@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { type Lang, t } from "../i18n";
 
 interface ProjectCardsProps {
   phase: number;
   isDark: boolean;
+  lang: Lang;
 }
 
 const containerVariants = {
@@ -26,14 +28,11 @@ const cardVariants = {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const projects = [
+const projectsMeta = [
   {
     id: "ion",
     title: "iON",
     logo: "/ion-logo.png",
-    description: "An iOS personal assistant app for life organization.",
-    details:
-      "iON is an iOS personal assistant built with Swift and SwiftUI. It provides life organization features including tasks, reminders, calendar, AI chat, finances, and shopping lists — powered by AI.",
     tags: ["Swift", "SwiftUI", "iOS", "Firebase"],
     link: "https://github.com/1Verona/iON",
   },
@@ -41,18 +40,12 @@ const projects = [
     id: "terminoted",
     title: "Terminoted",
     logo: "/terminoted-logo.png",
-    description: "A simple TUI-based notes & to-do app for the terminal.",
-    details:
-      "Terminoted is a terminal sticky notes and to-do application. Installable via Homebrew.",
     tags: ["JavaScript", "Node.js", "TUI", "CLI"],
     link: "https://github.com/1Verona/Terminoted",
   },
   {
     id: "proj-3",
-    title: "Coming Soon",
     logo: null,
-    description: "Something new is being built. Stay tuned.",
-    details: "More details coming soon.",
     tags: [],
     link: null,
   },
@@ -76,7 +69,29 @@ const EXP_ICON = 64; // h-16
 const EXP_GAP = 20; // gap-5
 const EXP_FONT_TITLE = 20; // text-xl
 
-export default function ProjectCards({ phase, isDark }: ProjectCardsProps) {
+export default function ProjectCards({ phase, isDark, lang }: ProjectCardsProps) {
+  const tr = t[lang].projects;
+
+  const projects = [
+    {
+      ...projectsMeta[0],
+      title: "iON",
+      description: tr.ion.description,
+      details: tr.ion.details,
+    },
+    {
+      ...projectsMeta[1],
+      title: "Terminoted",
+      description: tr.terminoted.description,
+      details: tr.terminoted.details,
+    },
+    {
+      ...projectsMeta[2],
+      title: tr.comingSoon.title,
+      description: tr.comingSoon.description,
+      details: tr.comingSoon.details,
+    },
+  ];
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [closingId, setClosingId] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<CardRect | null>(null);
@@ -308,7 +323,7 @@ export default function ProjectCards({ phase, isDark }: ProjectCardsProps) {
                       rel="noopener noreferrer"
                       className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors"
                     >
-                      View on GitHub
+                      {tr.viewOnGithub}
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M7 17L17 7M17 7H7M17 7V17" />
                       </svg>

@@ -1,13 +1,16 @@
 import { motion } from "motion/react";
+import { type Lang, t } from "../i18n";
 
 interface NavbarProps {
   phase: number;
   logoArrived: boolean;
   isDark: boolean;
   toggleDark: () => void;
+  lang: Lang;
+  toggleLang: () => void;
 }
 
-const FINAL_W = 290;
+const FINAL_W = 330;
 const FINAL_H = 48;
 const FINAL_R = 24;
 
@@ -28,7 +31,7 @@ function MoonIcon() {
   );
 }
 
-export default function Navbar({ phase, logoArrived, isDark, toggleDark }: NavbarProps) {
+export default function Navbar({ phase, logoArrived, isDark, toggleDark, lang, toggleLang }: NavbarProps) {
   const isActive = phase >= 1;
 
   return (
@@ -51,7 +54,7 @@ export default function Navbar({ phase, logoArrived, isDark, toggleDark }: Navba
         style={{ willChange: "width, opacity, transform" }}
         className="relative flex items-center justify-between overflow-hidden bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg"
       >
-        {/* Inner content — logo space (24px) + gap + VERONA + toggle ... CREATOR */}
+        {/* Inner content */}
         <div className="absolute inset-0 flex items-center justify-between px-5">
           <div className="flex items-center gap-3">
             <motion.button
@@ -76,14 +79,28 @@ export default function Navbar({ phase, logoArrived, isDark, toggleDark }: Navba
             </motion.span>
           </div>
 
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={logoArrived ? { opacity: 1 } : undefined}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="text-xs font-medium text-neutral-500 dark:text-neutral-400"
-          >
-            CREATOR
-          </motion.span>
+          <div className="flex items-center gap-3">
+            {/* Language toggle */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={logoArrived ? { opacity: 1 } : undefined}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              onClick={toggleLang}
+              className="flex items-center justify-center h-6 rounded-full px-2 text-[11px] font-semibold tracking-wider text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors"
+              aria-label="Toggle language"
+            >
+              {t[lang].nav.langToggle}
+            </motion.button>
+
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={logoArrived ? { opacity: 1 } : undefined}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="text-xs font-medium text-neutral-500 dark:text-neutral-400"
+            >
+              {t[lang].nav.creator}
+            </motion.span>
+          </div>
         </div>
       </motion.nav>
     </div>

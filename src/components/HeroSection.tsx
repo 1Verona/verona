@@ -1,9 +1,11 @@
 import { motion } from "motion/react";
 import SocialLinks from "./SocialLinks";
+import { type Lang, t } from "../i18n";
 
 interface HeroSectionProps {
   phase: number;
   onComplete: () => void;
+  lang: Lang;
 }
 
 const containerVariants = {
@@ -26,7 +28,9 @@ const itemVariants = {
   },
 };
 
-export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
+export default function HeroSection({ phase, onComplete, lang }: HeroSectionProps) {
+  const tr = t[lang].hero;
+
   return (
     <motion.section
       id="home"
@@ -44,7 +48,7 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
           variants={itemVariants}
           className="text-sm font-medium tracking-wide text-neutral-400 uppercase"
         >
-          Welcome
+          {tr.welcome}
         </motion.p>
 
         {/* Mobile: heading + memoji side by side */}
@@ -53,7 +57,7 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
             variants={itemVariants}
             className="text-5xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100 md:text-6xl"
           >
-            Hi, I'm Verona
+            {tr.heading}
           </motion.h1>
           {/* Small memoji for mobile */}
           <motion.div
@@ -82,8 +86,7 @@ export default function HeroSection({ phase, onComplete }: HeroSectionProps) {
           variants={itemVariants}
           className="max-w-md text-lg leading-relaxed text-neutral-500"
         >
-          A developer & video editor crafting experiences. Passionate about
-          UX, UI and AI. Bringing the best AI can give to your specific needs.
+          {tr.bio}
         </motion.p>
         <motion.div variants={itemVariants}>
           <SocialLinks />

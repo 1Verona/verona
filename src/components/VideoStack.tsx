@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { type Lang, t } from "../i18n";
 
 interface VideoStackProps {
   phase: number;
   isDark: boolean;
+  lang: Lang;
 }
 
 const W = 112;
@@ -11,7 +13,7 @@ const H = 199; // 9:16
 const CONTAINER_H = 300;
 const ORIGIN = "50% 130%";
 const CARD_TOP = Math.round(CONTAINER_H - H * 1.3);
-const ANGLES = [-38, -19, 0, 19, 38];
+const ANGLES = [-38, -27.1, -16.3, -5.4, 5.4, 16.3, 27.1, 38];
 
 // Expanded card size
 const EXP_W = 260;
@@ -30,11 +32,11 @@ const videos = [
   },
   {
     id: "v2",
-    title: "Travel Reel",
-    tag: "Travel",
-    duration: "1:15",
-    gradient: "linear-gradient(160deg, #0d1b2a 0%, #1b263b 60%, #415a77 100%)",
-    src: "",
+    title: "AD - AI",
+    tag: "ADs",
+    duration: "",
+    gradient: "",
+    src: "/videos/ad-ai1.mp4",
   },
   {
     id: "v3",
@@ -54,17 +56,42 @@ const videos = [
   },
   {
     id: "v5",
+    title: "Travel Reel",
+    tag: "Travel",
+    duration: "1:15",
+    gradient: "linear-gradient(160deg, #0d1b2a 0%, #1b263b 60%, #415a77 100%)",
+    src: "",
+  },
+  {
+    id: "v6",
     title: "Brand Edit",
     tag: "Brand",
     duration: "0:58",
     gradient: "linear-gradient(160deg, #1a0533 0%, #3d1a78 100%)",
     src: "",
   },
+  {
+    id: "v7",
+    title: "Minecraft #Shorts",
+    tag: "Gaming",
+    duration: "",
+    gradient: "",
+    src: "/videos/minecraft-shorts.mp4",
+  },
+  {
+    id: "v8",
+    title: "Blox Fruits",
+    tag: "Gaming",
+    duration: "",
+    gradient: "",
+    src: "/videos/blox-fruits.mp4",
+  },
 ];
 
 interface CardRect { top: number; left: number; width: number; height: number }
 
-export default function VideoStack({ phase, isDark }: VideoStackProps) {
+export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
+  const tr = t[lang].videos;
   const [hoveredId, setHoveredId]   = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<CardRect | null>(null);
@@ -153,14 +180,13 @@ export default function VideoStack({ phase, isDark }: VideoStackProps) {
       >
         <div className="mb-16 space-y-3">
           <p className="text-sm font-medium tracking-wide text-neutral-400 uppercase">
-            Creative Work
+            {tr.label}
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
-            Video Editing
+            {tr.heading}
           </h2>
           <p className="max-w-md text-base leading-relaxed text-neutral-500">
-            Beyond code, I craft visual stories through motion and rhythm — from
-            cinematic edits to short reels.
+            {tr.description}
           </p>
         </div>
 

@@ -5,10 +5,24 @@ import Logo from "./components/Logo";
 import HeroSection from "./components/HeroSection";
 import ProjectCards from "./components/ProjectCards";
 import VideoStack from "./components/VideoStack";
+import ExperienceSection from "./components/ExperienceSection";
+import { type Lang, t } from "./i18n";
 
 export default function App() {
   const [phase, setPhase] = useState(0);
   const [logoArrived, setLogoArrived] = useState(false);
+  const [lang, setLang] = useState<Lang>(() => {
+    return (localStorage.getItem("lang") as Lang) || "en";
+  });
+
+  const toggleLang = useCallback(() => {
+    setLang((prev) => {
+      const next: Lang = prev === "en" ? "pt" : "en";
+      localStorage.setItem("lang", next);
+      return next;
+    });
+  }, []);
+
   const [isDark, setIsDark] = useState<boolean>(() => {
     const stored = localStorage.getItem("theme");
     if (stored) return stored === "dark";
@@ -71,11 +85,12 @@ export default function App() {
         />
       </div>
       <Logo phase={phase} onDrawComplete={() => { setLogoArrived(true); advancePhase(); }} />
-      <Navbar phase={phase} logoArrived={logoArrived} isDark={isDark} toggleDark={toggleDark} />
+      <Navbar phase={phase} logoArrived={logoArrived} isDark={isDark} toggleDark={toggleDark} lang={lang} toggleLang={toggleLang} />
       <div className="relative z-10 flex min-h-screen flex-col">
-        <HeroSection phase={phase} onComplete={advancePhase} />
-        <ProjectCards phase={phase} isDark={isDark} />
-        <VideoStack phase={phase} isDark={isDark} />
+        <HeroSection phase={phase} onComplete={advancePhase} lang={lang} />
+        <ProjectCards phase={phase} isDark={isDark} lang={lang} />
+        <ExperienceSection phase={phase} isDark={isDark} lang={lang} />
+        <VideoStack phase={phase} isDark={isDark} lang={lang} />
         <div className="flex-1" />
         <motion.footer
           initial={{ opacity: 0 }}
@@ -83,7 +98,7 @@ export default function App() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="pb-4 pt-0 text-center text-sm text-neutral-400 dark:text-neutral-500"
         >
-          &copy; 2026 João Verona
+          {t[lang].footer}
         </motion.footer>
       </div>
     </div>
