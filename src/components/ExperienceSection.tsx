@@ -68,7 +68,7 @@ function SquircleTag({ label, isDark }: { label: string; isDark: boolean }) {
     <span
       className="inline-flex items-center px-3 py-1 text-xs font-medium"
       style={{
-        borderRadius: "22.5%/50%",
+        borderRadius: 8,
         background: isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)",
         color: isDark ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,0.55)",
         border: isDark
@@ -141,12 +141,16 @@ export default function ExperienceSection({ phase, isDark, lang }: ExperienceSec
             {/* Top row: company + period */}
             <div className="flex flex-wrap items-baseline justify-between gap-2">
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-                Bulky Bacon
+                Prota Games
               </h3>
               <span className="shrink-0 font-mono text-xs text-neutral-400">
                 {tr.protaGames.period}
               </span>
             </div>
+
+            <p className="mt-0.5 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+              Bulky Bacon
+            </p>
 
             <p className="mt-0.5 text-sm font-medium text-violet-500 dark:text-violet-400">
               {tr.protaGames.role}
