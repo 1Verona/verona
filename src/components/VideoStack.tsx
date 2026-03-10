@@ -80,6 +80,20 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
   const innerRefs     = useRef<Record<string, HTMLDivElement | null>>({});
   const lightboxVideo = useRef<HTMLVideoElement | null>(null);
   const volHideTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cardVideoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  // Hover-to-play: play card video on hover, pause + seek to 2s on leave
+  useEffect(() => {
+    Object.entries(cardVideoRefs.current).forEach(([id, vid]) => {
+      if (!vid) return;
+      if (id === hoveredId) {
+        vid.play().catch(() => {});
+      } else {
+        vid.pause();
+        vid.currentTime = 2;
+      }
+    });
+  }, [hoveredId]);
 
   // Explicitly play when lightbox opens (autoPlay is blocked inside animations)
   useEffect(() => {
@@ -233,11 +247,15 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
                 >
                   {video.src && (
                     <video
+                      ref={(el) => { cardVideoRefs.current[video.id] = el; }}
                       src={video.src}
-                      autoPlay
                       muted
                       loop
                       playsInline
+                      preload="metadata"
+                      onLoadedMetadata={(e) => {
+                        (e.target as HTMLVideoElement).currentTime = 2;
+                      }}
                       className="absolute inset-0 h-full w-full object-cover"
                     />
                   )}
