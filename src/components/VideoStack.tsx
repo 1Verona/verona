@@ -13,7 +13,7 @@ const H = 199; // 9:16
 const CONTAINER_H = 300;
 const ORIGIN = "50% 130%";
 const CARD_TOP = Math.round(CONTAINER_H - H * 1.3);
-const ANGLES = [-38, -27.1, -16.3, -5.4, 5.4, 16.3, 27.1, 38];
+const ANGLES = [-38, -19, 0, 19, 38];
 
 // Expanded card size
 const EXP_W = 260;
@@ -40,38 +40,6 @@ const videos = [
   },
   {
     id: "v3",
-    title: "Music Video",
-    tag: "Music",
-    duration: "3:47",
-    gradient: "linear-gradient(160deg, #200122 0%, #6f0000 100%)",
-    src: "",
-  },
-  {
-    id: "v4",
-    title: "Short Film",
-    tag: "Film",
-    duration: "5:22",
-    gradient: "linear-gradient(160deg, #0a0a0a 0%, #1a1a2e 60%, #16213e 100%)",
-    src: "",
-  },
-  {
-    id: "v5",
-    title: "Travel Reel",
-    tag: "Travel",
-    duration: "1:15",
-    gradient: "linear-gradient(160deg, #0d1b2a 0%, #1b263b 60%, #415a77 100%)",
-    src: "",
-  },
-  {
-    id: "v6",
-    title: "Brand Edit",
-    tag: "Brand",
-    duration: "0:58",
-    gradient: "linear-gradient(160deg, #1a0533 0%, #3d1a78 100%)",
-    src: "",
-  },
-  {
-    id: "v7",
     title: "Minecraft #Shorts",
     tag: "Gaming",
     duration: "",
@@ -79,12 +47,20 @@ const videos = [
     src: "/videos/minecraft-shorts.mp4",
   },
   {
-    id: "v8",
+    id: "v4",
     title: "Blox Fruits",
     tag: "Gaming",
     duration: "",
     gradient: "",
     src: "/videos/blox-fruits.mp4",
+  },
+  {
+    id: "v5",
+    title: "maybe our next work together 😉",
+    tag: "?",
+    duration: "",
+    gradient: "linear-gradient(160deg, #0f0f0f 0%, #1a1a2e 60%, #16213e 100%)",
+    src: "",
   },
 ];
 
