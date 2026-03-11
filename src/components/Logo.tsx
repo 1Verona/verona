@@ -42,16 +42,14 @@ export default function Logo({ phase, onDrawComplete }: LogoProps) {
       await new Promise((r) => setTimeout(r, 150));
 
       // Shrink and fly into navbar
-      // Navbar: 290px wide, centered, top: 24px (pt-6), height: 48px
+      // Navbar: 330px wide, centered, top: 24px (pt-6), height: 48px
       // Logo target: 24px icon, vertically centered in navbar = top 24 + 12 = 36px
-      // Horizontally: navbar left edge = calc(50% - 145px), plus px-5 (20px) padding = calc(50% - 125px)
-      // We use transform: translate(-50%, -50%) for centering, so target the center point of where logo should be
-      // Center of 24px logo = 36 + 12 = top 48px (with translate -50%), left = 50% - 145px + 20px + 12px = 50% - 113px
+      // Horizontally: navbar left edge = calc(50% - 165px), plus px-5 (20px) + 24px (toggle) + 12px (gap) = calc(50% - 109px)
       await animate(
         scope.current,
         {
           top: "36px",
-          left: "calc(50% - 73px)",
+          left: "calc(50% - 93px)",
           width: "24px",
           height: "24px",
           marginLeft: "0px",
