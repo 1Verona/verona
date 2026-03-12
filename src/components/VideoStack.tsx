@@ -81,16 +81,18 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
   const lightboxVideo = useRef<HTMLVideoElement | null>(null);
   const volHideTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
   const cardVideoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  // Keep a ref in sync with hoveredId to avoid stale closures in video events
+  const hoveredIdRef  = useRef<string | null>(null);
 
-  // Hover-to-play: play card video on hover, pause + seek to 2s on leave
+  // Hover-to-play: start buffering + play on hover; pause others
   useEffect(() => {
     Object.entries(cardVideoRefs.current).forEach(([id, vid]) => {
       if (!vid) return;
       if (id === hoveredId) {
+        // Always call play() — browser buffers and plays when ready; onCanPlay is the fallback
         vid.play().catch(() => {});
       } else {
         vid.pause();
-        vid.currentTime = 2;
       }
     });
   }, [hoveredId]);
@@ -141,11 +143,17 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
 
   const handleEnter = (id: string) => {
     if (leaveTimer.current) clearTimeout(leaveTimer.current);
+    hoveredIdRef.current = id;
     setHoveredId(id);
+
+    // nothing to do — useEffect handles play; metadata already preloaded
   };
 
   const handleLeave = () => {
-    leaveTimer.current = setTimeout(() => setHoveredId(null), 80);
+    leaveTimer.current = setTimeout(() => {
+      hoveredIdRef.current = null;
+      setHoveredId(null);
+    }, 80);
   };
 
   // Pull vector: move card along its own axis (away from the fan pivot)
@@ -238,11 +246,8 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
                     cursor: "pointer",
                     pointerEvents: "auto",
                     boxShadow: isHovered
-                      ? "0 18px 36px rgba(0,0,0,0.45), 0 6px 14px rgba(0,0,0,0.22)"
-                      : "0 6px 20px rgba(0,0,0,0.28)",
-                    border: isDark
-                      ? "1px solid rgba(255,255,255,0.08)"
-                      : "1px solid rgba(255,255,255,0.2)",
+                      ? "0 20px 40px rgba(0,0,0,0.38), 0 6px 12px rgba(0,0,0,0.18)"
+                      : "0 4px 16px rgba(0,0,0,0.22), 0 1px 4px rgba(0,0,0,0.12)",
                   }}
                 >
                   {video.src && (
@@ -254,9 +259,17 @@ export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
                       playsInline
                       preload="metadata"
                       onLoadedMetadata={(e) => {
-                        (e.target as HTMLVideoElement).currentTime = 2;
+                        // Snap to first frame so the thumbnail is visible
+                        (e.target as HTMLVideoElement).currentTime = 0;
+                      }}
+                      onCanPlay={(e) => {
+                        // Play only if this card is still being hovered
+                        if (hoveredIdRef.current === video.id) {
+                          (e.target as HTMLVideoElement).play().catch(() => {});
+                        }
                       }}
                       className="absolute inset-0 h-full w-full object-cover"
+                      style={{ borderRadius: 12 }}
                     />
                   )}
 

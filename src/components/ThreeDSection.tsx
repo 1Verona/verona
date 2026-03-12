@@ -157,6 +157,31 @@ export default function ThreeDSection({ phase, isDark, lang }: ThreeDSectionProp
           />
         ))}
       </div>
+
+      {/* Renders gallery */}
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {[
+          { src: "/images/bedroom.png", label: "Bedroom" },
+          { src: "/images/7eleven.png", label: "7-Eleven" },
+        ].map(({ src, label }) => (
+          <div
+            key={label}
+            className="overflow-hidden rounded-2xl"
+            style={{
+              border: isDark
+                ? "1px solid rgba(255,255,255,0.07)"
+                : "1px solid rgba(0,0,0,0.07)",
+            }}
+          >
+            <img
+              src={src}
+              alt={label}
+              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+              style={{ display: "block" }}
+            />
+          </div>
+        ))}
+      </div>
     </motion.section>
   );
 }
