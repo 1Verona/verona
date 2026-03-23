@@ -89,7 +89,7 @@ export default function HeroSection({ phase, onComplete, lang }: HeroSectionProp
           {tr.bio}
         </motion.p>
         <motion.div variants={itemVariants}>
-          <SocialLinks />
+          <SocialLinks lang={lang} />
         </motion.div>
       </div>
 

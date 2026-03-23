@@ -9,7 +9,7 @@ export const t = {
     hero: {
       welcome: "Welcome",
       heading: "Hi, I'm Verona",
-      bio: "A developer & video editor crafting experiences. Passionate about UX, UI and AI. Bringing the best AI can give to your specific needs.",
+      bio: "A developer & video editor crafting experiences. Passionate about UX, UI and AI, bringing the best it can give to your specific needs.",
     },
     projects: {
       ion: {
@@ -57,6 +57,7 @@ export const t = {
         { name: "Scene Design", desc: "Composing scenes for visual projects and mockups." },
       ],
     },
+    contact: "find me at joaoverona [at] aethertechai (dot) com",
     footer: "© 2026 João Verona",
   },
   pt: {
@@ -115,6 +116,7 @@ export const t = {
         { name: "Design de Cenas", desc: "Composição de cenas para projetos visuais e mockups." },
       ],
     },
+    contact: "me encontre em joaoverona [at] aethertechai (ponto) com",
     footer: "© 2026 João Verona",
   },
 } as const;

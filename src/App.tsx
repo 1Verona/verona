@@ -56,7 +56,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen bg-white dark:bg-neutral-950">
       {/* Subtle gradient orbs */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" style={{ isolation: "isolate" }}>
         <div
           className="absolute -top-32 -right-32 h-[600px] w-[600px] rounded-full"
           style={{
@@ -82,6 +82,15 @@ export default function App() {
               ? "radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%)"
               : "radial-gradient(circle, #bfdbfe 0%, transparent 70%)",
             opacity: isDark ? 1 : 0.25,
+          }}
+        />
+        {/* Grid blended with orbs only */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.011) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.011) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+            mixBlendMode: "screen",
           }}
         />
       </div>

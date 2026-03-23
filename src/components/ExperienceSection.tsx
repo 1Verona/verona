@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Gamepad2 } from "lucide-react";
 import { type Lang, t } from "../i18n";
 
 interface ExperienceSectionProps {
@@ -13,7 +14,7 @@ const ease = [0.25, 1, 0.5, 1] as const;
 const SQUIRCLE_PATH =
   "M50,0 C77.6,0 100,22.4 100,50 C100,77.6 77.6,100 50,100 C22.4,100 0,77.6 0,50 C0,22.4 22.4,0 50,0Z";
 
-function SquircleIcon({ isDark: _isDark }: { isDark: boolean }) {
+function SquircleIcon({ isDark }: { isDark: boolean }) {
   return (
     <div className="relative shrink-0" style={{ width: 64, height: 64 }}>
       <svg
@@ -23,10 +24,6 @@ function SquircleIcon({ isDark: _isDark }: { isDark: boolean }) {
         style={{ position: "absolute", inset: 0 }}
       >
         <defs>
-          <linearGradient id="pg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7c3aed" />
-            <stop offset="100%" stopColor="#db2777" />
-          </linearGradient>
           <clipPath id="squircle-clip">
             <path d={SQUIRCLE_PATH} />
           </clipPath>
@@ -34,30 +31,19 @@ function SquircleIcon({ isDark: _isDark }: { isDark: boolean }) {
         <rect
           width="100"
           height="100"
-          fill="url(#pg-grad)"
+          fill={isDark ? "#1e1e23" : "#e5e5ea"}
           clipPath="url(#squircle-clip)"
         />
       </svg>
-      {/* Controller icon */}
       <div
         className="absolute inset-0 flex items-center justify-center"
         style={{ zIndex: 1 }}
       >
-        <svg
-          width="30"
-          height="30"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="rgba(255,255,255,0.9)"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <rect x="2" y="6" width="20" height="12" rx="4" />
-          <path d="M6 10v4M8 12H4" />
-          <circle cx="16" cy="10.5" r="0.8" fill="rgba(255,255,255,0.9)" stroke="none" />
-          <circle cx="18.5" cy="12.5" r="0.8" fill="rgba(255,255,255,0.9)" stroke="none" />
-        </svg>
+        <Gamepad2
+          size={28}
+          strokeWidth={1.6}
+          color={isDark ? "rgba(255,255,255,0.75)" : "rgba(0,0,0,0.55)"}
+        />
       </div>
     </div>
   );

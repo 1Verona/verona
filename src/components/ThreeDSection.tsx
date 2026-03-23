@@ -120,9 +120,6 @@ export default function ThreeDSection({ phase, isDark, lang }: ThreeDSectionProp
     >
       {/* Header */}
       <div className="mb-12 space-y-3">
-        <p className="text-sm font-medium tracking-wide text-neutral-400 uppercase">
-          {tr.label}
-        </p>
         <div className="flex items-center gap-3">
           <h2 className="text-3xl font-semibold tracking-tight text-neutral-900 dark:text-neutral-100">
             {tr.heading}
