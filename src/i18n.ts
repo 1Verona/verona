@@ -18,7 +18,7 @@ export const t = {
           "iON is an iOS personal assistant built with Swift and SwiftUI. It provides life organization features including tasks, reminders, calendar, AI chat, finances, and shopping lists — powered by AI.",
       },
       terminoted: {
-        description: "A simple TUI-based notes & to-do app for the terminal.",
+        description: "A simple TUI-based notes & to-do app.",
         details:
           "Terminoted is a terminal sticky notes and to-do application. Installable via Homebrew.",
       },
@@ -33,12 +33,18 @@ export const t = {
       label: "Experience",
       heading: "Where I've Worked",
       protaGames: {
-        role: "Lead Video Editor — Bulky Bacon · Prota Games",
+        role: "Video Editor — Multiple Channels",
         period: "2024 – 2025",
         description:
-          "As the main editor of Bulky Bacon, a Blox Fruits-focused gaming channel under Prota Games, I built the channel's editing style from the ground up. In roughly two months we reached 200k subscribers and nearly 80 million organic views by crafting high-retention edits and an engaged community. I also onboarded and mentored a second editor, teaching audience-retention techniques and narrative flow. Alongside organic content, I integrated subtle in-video ads across multiple videos. I also used AI voice generation tools like ElevenLabs to produce voiceovers and enhance the audio production pipeline.",
+          "Worked as a freelance video editor across several gaming channels under the Prota Games network. Primary channel was Bulky Bacon (Blox Fruits), where I built the editing style and content pipeline from scratch — driving the channel from zero to 200k subscribers and nearly 80M organic views in roughly two months. Also edited for other channels in the network. Onboarded and mentored a second editor, integrated in-video advertising, and leveraged ElevenLabs AI voice generation across the audio pipeline.",
+        channels: ["Bulky Bacon ★", "BloxYuki", "Dumbck", "Zoomy", "PlayzKnoxy"],
         tags: ["VVSA", "Watch Time", "Audience Retention", "Link Conversion", "Short-form", "Storytelling", "Mentorship", "ElevenLabs"],
       },
+    },
+    featuredVideo: {
+      label: "",
+      heading: "a 1-minute me",
+      description: "",
     },
     videos: {
       label: "Creative Work",
@@ -92,12 +98,18 @@ export const t = {
       label: "Experiência",
       heading: "Onde Trabalhei",
       protaGames: {
-        role: "Editor Principal — Bulky Bacon · Prota Games",
+        role: "Editor de Vídeo — Múltiplos Canais",
         period: "2024 – 2025",
         description:
-          "Como editor principal do Bulky Bacon, canal focado em Blox Fruits sob a Prota Games, construí o estilo de edição do canal do zero. Em cerca de dois meses atingimos 200k inscritos e quase 80 milhões de visualizações orgânicas, criando uma comunidade ativa por meio de edições de alta retenção. Também integrei e treinei um segundo editor, ensinando técnicas de retenção de público e construção de narrativa. Paralelamente ao conteúdo orgânico, implementei anúncios sutis em múltiplos vídeos. Utilizei também ferramentas de geração de voz com IA como o ElevenLabs para produzir voiceovers e aprimorar o pipeline de produção de áudio.",
+          "Trabalhei como editor freelance em vários canais de gaming da rede Prota Games. Canal principal: Bulky Bacon (Blox Fruits), onde construí o estilo de edição e pipeline de conteúdo do zero — levando o canal de zero a 200k inscritos e quase 80M de views orgânicas em dois meses. Também editei para outros canais da rede, treinei um segundo editor, integrei publicidade in-video e usei ElevenLabs para geração de voz com IA.",
+        channels: ["Bulky Bacon ★", "BloxYuki", "Dumbck", "Zoomy", "PlayzKnoxy"],
         tags: ["VVSA", "Watch Time", "Retenção de Público", "Conversão de Links", "Short-form", "Storytelling", "Mentoria", "ElevenLabs"],
       },
+    },
+    featuredVideo: {
+      label: "",
+      heading: "a 1-minute me",
+      description: "",
     },
     videos: {
       label: "Trabalho Criativo",

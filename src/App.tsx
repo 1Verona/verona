@@ -5,6 +5,7 @@ import Logo from "./components/Logo";
 import HeroSection from "./components/HeroSection";
 import ProjectCards from "./components/ProjectCards";
 import VideoStack from "./components/VideoStack";
+import FeaturedVideo from "./components/FeaturedVideo";
 import ExperienceSection from "./components/ExperienceSection";
 import ThreeDSection from "./components/ThreeDSection";
 import { type Lang, t } from "./i18n";
@@ -101,6 +102,7 @@ export default function App() {
         <ProjectCards phase={phase} isDark={isDark} lang={lang} />
         <ExperienceSection phase={phase} isDark={isDark} lang={lang} />
         <VideoStack phase={phase} isDark={isDark} lang={lang} />
+        <FeaturedVideo phase={phase} lang={lang} />
         <ThreeDSection phase={phase} isDark={isDark} lang={lang} />
         <div className="flex-1" />
         <motion.footer

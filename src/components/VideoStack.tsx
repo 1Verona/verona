@@ -66,7 +66,7 @@ const videos = [
 
 interface CardRect { top: number; left: number; width: number; height: number }
 
-export default function VideoStack({ phase, isDark, lang }: VideoStackProps) {
+export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackProps) {
   const tr = t[lang].videos;
   const [hoveredId, setHoveredId]   = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);

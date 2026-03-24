@@ -134,13 +134,27 @@ export default function ExperienceSection({ phase, isDark, lang }: ExperienceSec
               </span>
             </div>
 
-            <p className="mt-0.5 text-sm font-medium text-neutral-500 dark:text-neutral-400">
-              Bulky Bacon
-            </p>
-
             <p className="mt-0.5 text-sm font-medium text-violet-500 dark:text-violet-400">
               {tr.protaGames.role}
             </p>
+
+            {/* Channels */}
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {tr.protaGames.channels.map((ch) => (
+                <span
+                  key={ch}
+                  className="inline-flex items-center px-2 py-0.5 text-[11px] font-medium"
+                  style={{
+                    borderRadius: 6,
+                    background: isDark ? "rgba(124,58,237,0.12)" : "rgba(124,58,237,0.07)",
+                    color: isDark ? "rgba(167,139,250,0.9)" : "rgba(109,40,217,0.8)",
+                    border: isDark ? "1px solid rgba(124,58,237,0.25)" : "1px solid rgba(124,58,237,0.15)",
+                  }}
+                >
+                  {ch}
+                </span>
+              ))}
+            </div>
 
             <p className="mt-3 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">
               {tr.protaGames.description}
