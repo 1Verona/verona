@@ -91,6 +91,7 @@ export default function FeaturedVideo({ phase, lang }: FeaturedVideoProps) {
           <video
             ref={videoRef}
             src="/videos/video1-legenda.mp4"
+            poster="/videos/video1-legenda-thumb.jpg"
             playsInline
             loop
             className="h-full w-full object-cover"
