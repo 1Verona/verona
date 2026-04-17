@@ -72,6 +72,7 @@ export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackP
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [originRect, setOriginRect] = useState<CardRect | null>(null);
   const [volume, setVolume]         = useState(0.7);
+  const [muted, setMuted]           = useState(true);
   const [isPlaying, setIsPlaying]   = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration]       = useState(0);
@@ -97,13 +98,15 @@ export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackP
     });
   }, [hoveredId]);
 
-  // Explicitly play when lightbox opens (autoPlay is blocked inside animations)
+  // Explicitly play when lightbox opens. Start muted so mobile autoplay is allowed.
   useEffect(() => {
     if (!selectedId) return;
     setIsPlaying(false);
+    setMuted(true);
     const timer = setTimeout(() => {
       const vid = lightboxVideo.current;
       if (!vid) return;
+      vid.muted = true;
       vid.volume = volume;
       vid.play()
         .then(() => setIsPlaying(true))
@@ -115,7 +118,28 @@ export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackP
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const v = parseFloat(e.target.value);
     setVolume(v);
-    if (lightboxVideo.current) lightboxVideo.current.volume = v;
+    setMuted(v === 0);
+    if (lightboxVideo.current) {
+      lightboxVideo.current.volume = v;
+      lightboxVideo.current.muted = v === 0;
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const vid = lightboxVideo.current;
+    if (!vid) return;
+    const next = !muted;
+    setMuted(next);
+    vid.muted = next;
+    if (!next) {
+      if (volume === 0) {
+        setVolume(0.7);
+        vid.volume = 0.7;
+      } else {
+        vid.volume = volume;
+      }
+    }
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -205,6 +229,30 @@ export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackP
         </div>
 
         <div className="relative mx-auto" style={{ height: CONTAINER_H }}>
+          {/* Interactive hint */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1.5"
+            style={{ bottom: -36 }}
+          >
+            <motion.svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="text-neutral-400 dark:text-neutral-500"
+              animate={{ x: [0, 3, 0], y: [0, 3, 0] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <path d="M5 2L5 18L9.5 13.5L14 20L16.5 18.5L12 12L18 12L5 2Z" />
+            </motion.svg>
+            <span className="text-xs font-medium text-neutral-400 dark:text-neutral-500 tracking-wide">
+              Psst... it's interactive!
+            </span>
+          </motion.div>
+
           {videos.map((video, i) => {
             const angle      = ANGLES[i];
             const isHovered  = hoveredId === video.id;
@@ -384,11 +432,13 @@ export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackP
                   src={selected.src}
                   autoPlay
                   loop
+                  muted={muted}
                   playsInline
                   className="absolute inset-0 h-full w-full object-cover"
                   onCanPlay={(e) => {
                     const vid = e.target as HTMLVideoElement;
-                    vid.volume = volume;
+                    vid.muted = muted;
+                    if (!muted) vid.volume = volume;
                     vid.play()
                       .then(() => setIsPlaying(true))
                       .catch(() => setIsPlaying(false));
@@ -460,9 +510,10 @@ export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackP
                   />
 
                   {/* Volume icon + vertical popup */}
-                  <div
+                  <button
                     className="relative shrink-0 flex items-center justify-center"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", background: "none", border: "none", padding: 0 }}
+                    onClick={toggleMute}
                     onMouseEnter={handleVolumeEnter}
                     onMouseLeave={handleVolumeLeave}
                   >
@@ -495,12 +546,21 @@ export default function VideoStack({ phase, isDark: _isDark, lang }: VideoStackP
                       </div>
                     )}
                     {/* Speaker icon */}
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="white" style={{ opacity: volume === 0 ? 0.4 : 0.85 }}>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="white" style={{ opacity: muted || volume === 0 ? 0.4 : 0.85 }}>
                       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                      {volume > 0.05 && <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
-                      {volume > 0.55 && <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
+                      {muted || volume === 0 ? (
+                        <>
+                          <line x1="15" y1="9" x2="21" y2="15" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+                          <line x1="21" y1="9" x2="15" y2="15" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+                        </>
+                      ) : (
+                        <>
+                          {volume > 0.05 && <path d="M15.54 8.46a5 5 0 0 1 0 7.07" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
+                          {volume > 0.55 && <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round"/>}
+                        </>
+                      )}
                     </svg>
-                  </div>
+                  </button>
                 </div>
               </motion.div>
             </motion.div>
