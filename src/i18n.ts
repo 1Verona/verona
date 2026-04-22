@@ -24,7 +24,8 @@ export const t = {
       },
       comingSoon: {
         title: "Coming Soon",
-        description: "Something new is being built. Stay tuned.",
+        description: "",
+        message: "More projects are on the way.",
         details: "More details coming soon.",
       },
       viewOnGithub: "View on GitHub",
@@ -89,7 +90,8 @@ export const t = {
       },
       comingSoon: {
         title: "Em Breve",
-        description: "Algo novo está sendo construído. Fique ligado.",
+        description: "",
+        message: "Tem mais projetos vindo por ai.",
         details: "Mais detalhes em breve.",
       },
       viewOnGithub: "Ver no GitHub",

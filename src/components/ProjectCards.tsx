@@ -43,12 +43,6 @@ const projectsMeta = [
     tags: ["JavaScript", "Node.js", "TUI", "CLI"],
     link: "https://github.com/1Verona/Terminoted",
   },
-  {
-    id: "proj-3",
-    logo: null,
-    tags: [],
-    link: null,
-  },
 ];
 
 interface CardRect {
@@ -84,12 +78,6 @@ export default function ProjectCards({ phase, isDark, lang }: ProjectCardsProps)
       title: "Terminoted",
       description: tr.terminoted.description,
       details: tr.terminoted.details,
-    },
-    {
-      ...projectsMeta[2],
-      title: tr.comingSoon.title,
-      description: tr.comingSoon.description,
-      details: tr.comingSoon.details,
     },
   ];
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -136,8 +124,9 @@ export default function ProjectCards({ phase, isDark, lang }: ProjectCardsProps)
         variants={containerVariants}
         initial="hidden"
         animate={phase >= 3 ? "visible" : "hidden"}
-        className="mx-auto grid max-w-5xl grid-cols-1 gap-6 px-6 pb-24 md:grid-cols-2"
+        className="mx-auto max-w-5xl px-6 pb-24"
       >
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {projects.map((project) => {
           const isSelected = selectedId === project.id;
           const isClosing = closingId === project.id;
@@ -156,7 +145,7 @@ export default function ProjectCards({ phase, isDark, lang }: ProjectCardsProps)
             onAnimationComplete={() => {
               if (isClosing && !isSelected) setClosingId(null);
             }}
-            className="cursor-pointer rounded-2xl p-5 hover:scale-[1.02] transition-transform duration-300"
+            className="cursor-pointer rounded-2xl p-5 transition-transform duration-300 hover:scale-[1.02]"
             style={isDark ? {
               background: "#18181b",
               boxShadow: "0 4px 16px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3)",
@@ -185,6 +174,14 @@ export default function ProjectCards({ phase, isDark, lang }: ProjectCardsProps)
           </motion.div>
           );
         })}
+        </div>
+
+        <motion.p
+          variants={cardVariants}
+          className="mx-auto mt-10 max-w-2xl text-center text-base font-medium leading-relaxed text-neutral-500 dark:text-neutral-400"
+        >
+          {tr.comingSoon.message}
+        </motion.p>
       </motion.section>
 
       <AnimatePresence

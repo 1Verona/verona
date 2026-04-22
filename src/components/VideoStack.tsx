@@ -48,11 +48,11 @@ const videos = [
   },
   {
     id: "v4",
-    title: "Blox Fruits",
+    title: "UGC Test",
     tag: "Gaming",
     duration: "",
     gradient: "",
-    src: "/videos/blox-fruits.mp4",
+    src: "/videos/ugc-test.mp4",
   },
   {
     id: "v5",
