@@ -1,4 +1,8 @@
 const portugueseCopy = {
+  "Did I catch": "Chamei",
+  "your": "sua",
+  "attention?": "atenção?",
+  "Get in touch": "Entrar em contato",
   "It all started…": "Tudo começou…",
   "And then…": "E então…",
   "And finally…": "E por fim…",
