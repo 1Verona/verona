@@ -1,17 +1,280 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="verona.media" />
-    <title>verona.media</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="João Verona — creative work powered by programming, AI and automation. Video editing, motion design and ads.">
+  <title>João Verona — Creative work. Smarter by design.</title>
+  <link rel="icon" type="image/svg+xml" href="assets/verona-logo.svg">
+  <link rel="preload" href="assets/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/GeistSerif-Triangle.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=20261124-story-chapters">
+  <script src="language.js?v=20261124-story-chapters" defer></script>
+  <script src="app.js?v=20261124-story-chapters" defer></script>
+  <script src="contact.js?v=20261102-process-story" defer></script>
+  <script src="project-map.js?v=20261124-story-chapters" defer></script>
+  <script src="tool-strip.js?v=20261124-story-chapters" defer></script>
+  <script src="blobs.js?v=20261124-story-background" defer></script>
+</head>
+<body>
+  <a class="skip" href="#projetos">Skip to projects</a>
+  <header class="header">
+    <a class="wordmark" href="#inicio" aria-label="Verona, home"><svg class="brand-logo metallic-logo" aria-hidden="true" width="31" height="24" viewBox="180 250 730 550" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="nav-metal" class="metal-gradient" gradientUnits="userSpaceOnUse" x1="180" y1="250" x2="910" y2="800" gradientTransform="rotate(-20 545 525)"><stop stop-color="#f8f8f8"/><stop offset=".19" stop-color="#a0a0a0"/><stop offset=".35" stop-color="#e8e8e8"/><stop offset=".43" stop-color="#fff"/><stop offset=".48" stop-color="#888"/><stop offset=".59" stop-color="#383838"/><stop offset=".72" stop-color="#b0b0b0"/><stop offset=".86" stop-color="#f5f5f5"/><stop offset="1" stop-color="#707070"/></linearGradient>
+  <filter id="nav-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".65 .14" numOctaves="3" seed="8" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+  <filter id="nav-light" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="bevel"/><feSpecularLighting in="bevel" surfaceScale="5" specularConstant=".9" specularExponent="24" lighting-color="#fff" result="shine"><fePointLight class="metal-light" x="350" y="80" z="420"/></feSpecularLighting><feComposite in="shine" in2="SourceAlpha" operator="in"/></filter>
+ <pattern id="nav-dither" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0h3v3H0zM6 6h3v3H6zM3 9h1.5v1.5H3zM9 3h1.5v1.5H9z" fill="#fff"/></pattern>
+ <radialGradient id="nav-dither-glow" class="metal-dither-glow" cx="65%" cy="25%" r="70%"><stop stop-color="#fff"/><stop offset=".4" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#000"/></radialGradient>
+ <mask id="nav-dither-mask" maskUnits="userSpaceOnUse" x="180" y="250" width="730" height="550"><rect x="180" y="250" width="730" height="550" fill="url(#nav-dither-glow)"/></mask></defs>
+ <g fill="#353535" transform="translate(0 5)"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="url(#nav-metal)"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="#aaa" filter="url(#nav-grain)" opacity=".23"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="#aaa" filter="url(#nav-light)" opacity=".8"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g class="metal-dither" fill="url(#nav-dither)" mask="url(#nav-dither-mask)" opacity=".65"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+</svg>verona<span>27</span></a>
+    <p class="header-note">EDITING, MOTION &amp; IDEAS IN MOTION</p>
+    <button type="button" class="header-contact" data-copy-contact aria-controls="contact-popover" aria-expanded="false">Let’s talk <span aria-hidden="true">↗</span></button>
+    <div class="language-toggle" role="group" aria-label="Language"><button type="button" data-language="en" aria-pressed="true" lang="en" aria-label="English">EN</button><button type="button" data-language="pt" aria-pressed="false" lang="pt-BR" aria-label="Português">PT</button></div>
+  </header>
+  <nav class="rail" aria-label="Main navigation">
+    <a href="#inicio" class="active" aria-current="location"><span>01</span> Home</a>
+    <a href="#projetos"><span>02</span> Projects/Skills</a>
+    <a href="#contato"><span>06</span> Contact</a>
+  </nav>
+  <div class="gallery-viewport"><main class="track" aria-label="Horizontal portfolio" tabindex="0">
+    <section class="panel intro" id="inicio" aria-labelledby="intro-title">
+      <div class="intro-grid">
+        <div class="identity-card">
+          <div class="small-row"><span>BEHIND THE WORK</span><span aria-hidden="true">✳</span></div>
+          <div class="identity-visual" aria-hidden="true"><span class="orbit"></span><svg class="identity-logo metallic-logo" aria-hidden="true" width="200" height="150" viewBox="180 250 730 550" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="identity-metal" class="metal-gradient" gradientUnits="userSpaceOnUse" x1="180" y1="250" x2="910" y2="800" gradientTransform="rotate(-20 545 525)"><stop stop-color="#f8f8f8"/><stop offset=".19" stop-color="#a0a0a0"/><stop offset=".35" stop-color="#e8e8e8"/><stop offset=".43" stop-color="#fff"/><stop offset=".48" stop-color="#888"/><stop offset=".59" stop-color="#383838"/><stop offset=".72" stop-color="#b0b0b0"/><stop offset=".86" stop-color="#f5f5f5"/><stop offset="1" stop-color="#707070"/></linearGradient>
+  <filter id="identity-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".65 .14" numOctaves="3" seed="8" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+  <filter id="identity-light" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="bevel"/><feSpecularLighting in="bevel" surfaceScale="5" specularConstant=".9" specularExponent="24" lighting-color="#fff" result="shine"><fePointLight class="metal-light" x="350" y="80" z="420"/></feSpecularLighting><feComposite in="shine" in2="SourceAlpha" operator="in"/></filter>
+ <pattern id="identity-dither" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0h3v3H0zM6 6h3v3H6zM3 9h1.5v1.5H3zM9 3h1.5v1.5H9z" fill="#fff"/></pattern>
+ <radialGradient id="identity-dither-glow" class="metal-dither-glow" cx="65%" cy="25%" r="70%"><stop stop-color="#fff"/><stop offset=".4" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#000"/></radialGradient>
+ <mask id="identity-dither-mask" maskUnits="userSpaceOnUse" x="180" y="250" width="730" height="550"><rect x="180" y="250" width="730" height="550" fill="url(#identity-dither-glow)"/></mask></defs>
+ <g fill="#353535" transform="translate(0 5)"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="url(#identity-metal)"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="#aaa" filter="url(#identity-grain)" opacity=".23"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="#aaa" filter="url(#identity-light)" opacity=".8"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g class="metal-dither" fill="url(#identity-dither)" mask="url(#identity-dither-mask)" opacity=".65"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+</svg><span class="orbit small"></span></div>
+          <div><p class="identity-prefix">Hi, I’m</p><h2>João<br>Verona<span>↗</span></h2></div>
+          <p class="identity-footer">VIDEO EDITOR<br>&amp; MOTION DESIGNER</p>
+        </div>
+        <div class="hero-heading"><p class="eyebrow hero-brand"><svg class="hero-logo metallic-logo" role="img" aria-label="Verona logo" width="38" height="29" viewBox="180 250 730 550" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="hero-metal" class="metal-gradient" gradientUnits="userSpaceOnUse" x1="180" y1="250" x2="910" y2="800" gradientTransform="rotate(-20 545 525)"><stop stop-color="#f8f8f8"/><stop offset=".19" stop-color="#a0a0a0"/><stop offset=".35" stop-color="#e8e8e8"/><stop offset=".43" stop-color="#fff"/><stop offset=".48" stop-color="#888"/><stop offset=".59" stop-color="#383838"/><stop offset=".72" stop-color="#b0b0b0"/><stop offset=".86" stop-color="#f5f5f5"/><stop offset="1" stop-color="#707070"/></linearGradient>
+  <filter id="hero-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".65 .14" numOctaves="3" seed="8" result="noise"/><feColorMatrix in="noise" type="saturate" values="0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+  <filter id="hero-light" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="2.5" result="bevel"/><feSpecularLighting in="bevel" surfaceScale="5" specularConstant=".9" specularExponent="24" lighting-color="#fff" result="shine"><fePointLight class="metal-light" x="350" y="80" z="420"/></feSpecularLighting><feComposite in="shine" in2="SourceAlpha" operator="in"/></filter>
+ <pattern id="hero-dither" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0h3v3H0zM6 6h3v3H6zM3 9h1.5v1.5H3zM9 3h1.5v1.5H9z" fill="#fff"/></pattern>
+ <radialGradient id="hero-dither-glow" class="metal-dither-glow" cx="65%" cy="25%" r="70%"><stop stop-color="#fff"/><stop offset=".4" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#000"/></radialGradient>
+ <mask id="hero-dither-mask" maskUnits="userSpaceOnUse" x="180" y="250" width="730" height="550"><rect x="180" y="250" width="730" height="550" fill="url(#hero-dither-glow)"/></mask></defs>
+ <g fill="#353535" transform="translate(0 5)"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="url(#hero-metal)"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="#aaa" filter="url(#hero-grain)" opacity=".23"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="#aaa" filter="url(#hero-light)" opacity=".8"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g class="metal-dither" fill="url(#hero-dither)" mask="url(#hero-dither-mask)" opacity=".65"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+ <g fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"><path d="M195 269H442L634.5 558.5L534.5 783.5L195 269Z"/><path d="M634.5 558.5H788L889.5 350.5H732L634.5 558.5Z"/></g>
+</svg><span>SELECTED WORK / 2027</span></p><h1 id="intro-title"><span>Creative work.</span><span>Smarter by design.</span></h1></div>
+        <button class="reel media-open" data-video="https://1verona.vercel.app/videos/video1-legenda.mp4" data-title="Meet João Verona" aria-label="Watch João Verona’s introduction">
+          <img src="assets/showreel.jpg" alt="João Verona in his introduction video">
+          <span class="reel-shade"></span><span class="play-circle" aria-hidden="true">▶</span>
+          <span class="reel-caption"><span>A LITTLE ABOUT ME</span><span>WATCH ↗</span></span>
+        </button>
+        <div class="intro-copy"><p>From the first cut<br>to the final detail.</p><span>I connect video editing, motion and ads with programming, AI and automation to turn creative ideas into smarter production.</span></div>
+        <a class="explore" href="#projetos"><span>Explore <br>projects</span><span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="panel project-map" id="projetos" aria-labelledby="projects-title">
+      <div class="map-heading"><div><p class="eyebrow">02 / PROJECTS / SKILLS</p><h2 id="projects-title">Connected by<br><span>possibility.</span></h2></div><p>Two disciplines.<br>One creative workflow.</p></div>
+      <div class="map-scene" aria-label="Video editing and computer science connect to AI × Video.">
+        <svg class="map-connections" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="connection-dither" width="6" height="6" patternUnits="userSpaceOnUse"><path fill="white" d="M0 0h1.5v1.5H0zM3 3h1.5v1.5H3zM1.5 4.5h.8v.8h-.8zM4.5 1.5h.8v.8h-.8z"/></pattern></defs><g class="connection-base"><path data-curve="video"/><path data-curve="code"/></g><g class="connection-flow"><path data-curve="video"/><path data-curve="code"/></g></svg>
+        <a class="map-node video-node" href="#video-editing"><span class="node-topline"><span>01 / VISUAL</span><span aria-hidden="true">↗</span></span><span class="node-icon" aria-hidden="true">▶</span><span class="node-title">Video Editing</span><span class="node-copy">Editing since 2018. From gaming montages to content and ads.</span><span class="node-action">Explore videos <span aria-hidden="true">↗</span></span></a>
+        <a class="map-node code-node" href="#computer-science"><span class="node-topline"><span>02 / EDUCATION</span><span aria-hidden="true">↗</span></span><span class="node-icon code-icon" aria-hidden="true">&lt;/&gt;</span><span class="node-title">Computer Science Background</span><span class="node-copy">Computer Science student at Unisul.</span><span class="node-action">About my studies <span aria-hidden="true">↗</span></span></a>
+        <a class="map-node fusion-node" href="#ai-video"><span class="node-topline"><span>03 / THE INTERSECTION</span><span aria-hidden="true">↗</span></span><span class="node-icon fusion-icon" aria-hidden="true">✳</span><span class="node-title">AI × Video</span><span class="node-copy">A motion graphics agent and an autonomous editing pipeline for video ads.</span><span class="fusion-tags"><span>VIDEO ADS</span><span>MOTION</span></span><span class="node-action">Explore the intersection <span aria-hidden="true">↗</span></span></a>
+      </div>
+      <div class="map-legend"><span><i aria-hidden="true"></i> CREATIVE DISCIPLINES, CONNECTED</span><span>SELECT A MODULE ↗</span></div>
+    </section>
+
+<section class="panel journey-panel video-slide" id="video-editing" aria-labelledby="video-editing-title" data-rail="projetos"><nav class="journey-steps" aria-label="Creative journey"><a href="#video-editing" aria-current="step"><span>01</span><span>Video Editing</span></a><a href="#computer-science"><span>02</span><span>Computer Science Background</span></a><a href="#ai-video"><span>03</span><span>AI × Video</span></a></nav><div class="journey-heading"><div><p class="chapter-intro">It all started…</p><h2 id="video-editing-title">Video Editing</h2></div></div><div class="slide-body">
+      <section class="editing-story" aria-labelledby="editing-story-title"><p class="eyebrow">MY JOURNEY / 2018 → NOW</p><h3 id="editing-story-title">It started with editing for fun.</h3><ol class="editing-timeline">
+        <li>
+          <span class="story-period">2018 / THE START</span>
+          <div>
+            <h4>Highlights, montages &amp; curiosity.</h4>
+            <p>I started editing for fun in 2018, learning through editing and VFX content and putting those ideas into gaming highlights, montages and short films for school. Experimenting with different formats helped me develop my eye for pacing, storytelling and visual detail.</p>
+            <div class="experience-tools">
+              <span>Tools used</span>
+              <ul class="tool-list" aria-label="Tools used">
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon tool-vegas" aria-hidden="true"><img src="assets/tools/sony-vegas.png" alt="" width="32" height="32"></span>
+                  <span class="tool-name">Sony Vegas</span>
+                </button></li>
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon" aria-hidden="true"><img src="assets/tools/premiere.png" alt="" width="32" height="32"></span>
+                  <span class="tool-name">Premiere Pro</span>
+                </button></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="story-period">2024—2025</span>
+          <div>
+            <h4>Prota Games</h4>
+            <p>At Prota Games, I edited gaming content across multiple channels, with a focus on Bulky Bacon. Beyond the edits themselves, I helped build the visual language and production workflow, mentored another editor and integrated AI voice production. The channel reached 200K subscribers and nearly 80M organic views in around two months through a collaborative production effort. Making the process more organized and efficient was part of the work from the start.</p>
+            <div class="experience-tools">
+              <span>Tools used</span>
+              <ul class="tool-list" aria-label="Tools used">
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon" aria-hidden="true"><img src="assets/tools/premiere.png" alt="" width="32" height="32"></span>
+                  <span class="tool-name">Premiere Pro</span>
+                </button></li>
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon tool-elevenlabs" aria-hidden="true"><img src="assets/tools/elevenlabs.svg" alt="" width="32" height="32"></span>
+                  <span class="tool-name">ElevenLabs</span>
+                </button></li>
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon tool-blender" aria-hidden="true"><img src="assets/tools/blender.svg" alt="" width="32" height="32"></span>
+                  <span class="tool-name">Blender</span>
+                </button></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="story-period">2026 / FALCON MEDIA</span>
+          <div>
+            <h4>Vlogs, sports, news &amp; motion graphics.</h4>
+            <p>At Falcon Media, I worked with vlogs, sports, news content and motion graphics. Moving between these formats meant adapting the pacing and visual approach to each story, while keeping process optimization in focus: finding better ways to organize the work and make production more efficient.</p>
+            <div class="experience-tools">
+              <span>Tools used</span>
+              <ul class="tool-list" aria-label="Tools used">
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon" aria-hidden="true"><img src="assets/tools/premiere.png" alt="" width="32" height="32"></span>
+                  <span class="tool-name">Premiere Pro</span>
+                </button></li>
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon" aria-hidden="true"><img src="assets/tools/after-effects.png" alt="" width="32" height="32"></span>
+                  <span class="tool-name">After Effects</span>
+                </button></li>
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon" aria-hidden="true"><img src="assets/tools/higgsfield.png" alt="" width="32" height="32"></span>
+                  <span class="tool-name">Higgsfield</span>
+                </button></li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li>
+          <span class="story-period">2026 / DTC &amp; UGC</span>
+          <div>
+            <h4>Arbitrage Agency &amp; Kinectic Apps</h4>
+            <p>At Arbitrage Agency and Kinectic Apps, I worked on direct-to-consumer (DTC) ads and UGC-style creatives. This brought a different focus to the edit: communicating the product clearly and shaping the material into an engaging ad. Alongside the creative work, I kept looking for ways to streamline production and improve the workflow.</p>
+            <div class="experience-tools">
+              <span>Tools used</span>
+              <ul class="tool-list" aria-label="Tools used">
+                <li><button class="tool-button" type="button">
+                  <span class="tool-icon" aria-hidden="true"><img src="assets/tools/premiere.png" alt="" width="32" height="32"></span>
+                  <span class="tool-name">Premiere Pro</span>
+                </button></li>
+              <li><button class="tool-button" type="button"><span class="tool-icon tool-kling" aria-hidden="true"><img src="assets/tools/kling.png" alt="" width="32" height="32"></span><span class="tool-name">Kling</span></button></li>
+<li><button class="tool-button" type="button"><span class="tool-icon tool-seedance" aria-hidden="true"><img src="assets/tools/seedance.png" alt="" width="32" height="32"></span><span class="tool-name">Seedance</span></button></li>
+<li><button class="tool-button" type="button"><span class="tool-icon " aria-hidden="true"><img src="assets/tools/higgsfield.png" alt="" width="32" height="32"></span><span class="tool-name">Higgsfield</span></button></li>
+</ul>
+            </div>
+          </div>
+        </li>
+      </ol><div class="editing-principle"><p class="eyebrow">THE COMMON THREAD</p><h4>Better processes. More room to create.</h4><p>Across all of these experiences, optimizing processes has been a constant priority. I look at both the final video and the way it gets made: how the work is organized, where time is lost and how tools and AI can support production. For me, a better workflow creates more room for creative decisions and attention to detail.</p></div></section>
+      <div class="editing-work-heading"><p class="eyebrow">IN PRACTICE</p><h3>Selected videos</h3></div>
+      <div class="work-grid">
+        <article class="project"><button class="project-media media-open" data-video="assets/ad1.mp4" data-title="Ebook · SEO" aria-label="Watch the SEO ebook ad"><img src="assets/ad1.jpg" alt="Preview of the SEO ebook ad" loading="lazy"><span class="project-number">01 / ADS</span><span class="project-play" aria-hidden="true">↗</span></button><div class="project-info"><h3>Ebook · SEO</h3><span>AD EDITING</span></div></article>
+        <article class="project"><button class="project-media media-open" data-video="https://1verona.vercel.app/videos/ad-ai1.mp4" data-title="Artificial intelligence · Ad" aria-label="Watch the artificial intelligence ad"><video muted playsinline preload="metadata" tabindex="-1" aria-hidden="true" src="https://1verona.vercel.app/videos/ad-ai1.mp4#t=0.2"></video><span class="project-number">02 / ADS</span><span class="project-play" aria-hidden="true">↗</span></button><div class="project-info"><h3>Artificial intelligence</h3><span>AD EDITING</span></div></article>
+        <article class="project"><button class="project-media media-open" data-video="https://1verona.vercel.app/videos/minecraft-shorts.mp4" data-title="Minecraft · Shorts" aria-label="Watch the Minecraft short"><img src="assets/minecraft.jpg" alt="Minecraft video preview" loading="lazy"><span class="project-number">03 / GAMING</span><span class="project-play" aria-hidden="true">↗</span></button><div class="project-info"><h3>Minecraft · Shorts</h3><span>VERTICAL CONTENT</span></div></article>
+        <article class="project"><button class="project-media media-open" data-video="https://1verona.vercel.app/videos/ugc-test.mp4" data-title="UGC · Creative test" aria-label="Watch the UGC creative test"><video muted playsinline preload="metadata" tabindex="-1" aria-hidden="true" src="https://1verona.vercel.app/videos/ugc-test.mp4#t=0.2"></video><span class="project-number">04 / UGC</span><span class="project-play" aria-hidden="true">↗</span></button><div class="project-info"><h3>UGC · Creative test</h3><span>EDITING &amp; PACING</span></div></article>
+      </div>
+  </div><div class="journey-footer"><a href="#projetos">← <span>Back</span></a><span class="journey-marker">01 / 03</span><a href="#computer-science"><span>Computer Science Background</span> →</a></div></section>
+<section class="panel journey-panel coding-slide" id="computer-science" aria-labelledby="computer-science-title" data-rail="projetos"><nav class="journey-steps" aria-label="Creative journey"><a href="#video-editing"><span>01</span><span>Video Editing</span></a><a href="#computer-science" aria-current="step"><span>02</span><span>Computer Science Background</span></a><a href="#ai-video"><span>03</span><span>AI × Video</span></a></nav><div class="journey-heading"><div><p class="chapter-intro">And then…</p><h2 id="computer-science-title">Computer Science Background</h2></div></div><div class="slide-body"><div class="cs-intro"><div class="cs-education"><article><span class="pill">SENAI</span><h3>Technical high school</h3><p>Systems Analysis and Development — completed.</p></article><article><span class="pill">UNISUL</span><h3>Computer Science</h3><p>Currently studying.</p></article></div><p>My education has led to a variety of school, university and personal projects across different programming languages.</p><p>These projects span computer vision, AI, model training and traditional software development.</p><div class="cs-fields"><span>COMPUTER VISION</span><span>AI</span><span>MODEL TRAINING</span><span>SOFTWARE DEVELOPMENT</span></div><p class="github-invitation">You can explore some of these projects on my GitHub.</p><a class="github-profile" href="https://github.com/1Verona" target="_blank" rel="noopener" aria-label="Visit my GitHub"><span><span class="eyebrow">GITHUB</span><span>github.com/1Verona</span></span><span aria-hidden="true">↗</span></a></div><div class="software-projects"><a href="https://github.com/1Verona/Terminoted" target="_blank" rel="noopener"><span class="eyebrow">TERMINAL / PRODUCTIVITY</span><h3>Terminoted <span aria-hidden="true">↗</span></h3><p>A lightweight notes and to-do app for the terminal.</p></a></div></div><div class="journey-footer"><a href="#video-editing">← <span>Back</span></a><span class="journey-marker">02 / 03</span><a href="#ai-video"><span>AI × Video</span> →</a></div></section>
+<section class="panel journey-panel ai-slide" id="ai-video" aria-labelledby="ai-video-title" data-rail="projetos"><nav class="journey-steps" aria-label="Creative journey"><a href="#video-editing"><span>01</span><span>Video Editing</span></a><a href="#computer-science"><span>02</span><span>Computer Science Background</span></a><a href="#ai-video" aria-current="step"><span>03</span><span>AI × Video</span></a></nav><div class="journey-heading"><div><p class="chapter-intro">And finally…</p><h2 id="ai-video-title">AI × Video</h2></div><p class="ai-manifesto">Creative instincts.<br><i>Intelligent systems.</i></p></div><div class="slide-body">
+    <section class="tool-strip" aria-labelledby="ai-tools-title">
+      <h3 id="ai-tools-title">Tools used</h3>
+      <ul class="tool-list">
+        <li><button class="tool-button" type="button" aria-labelledby="tool-grokbot">
+          <span class="tool-icon" aria-hidden="true"><img src="assets/tools/grokbot.png" alt="" width="48" height="48"></span>
+          <span class="tool-name" id="tool-grokbot">Grokbot</span>
+        </button></li>
+        <li><button class="tool-button" type="button" aria-labelledby="tool-hyperframes">
+          <span class="tool-icon" aria-hidden="true"><img src="assets/tools/hyperframes.png" alt="" width="48" height="48"></span>
+          <span class="tool-name" id="tool-hyperframes">HyperFrames</span>
+        </button></li>
+        <li><button class="tool-button" type="button" aria-labelledby="tool-openbot">
+          <span class="tool-icon" aria-hidden="true"><img src="assets/tools/openbot.png" alt="" width="48" height="48"></span>
+          <span class="tool-name" id="tool-openbot">OpenBot</span>
+        </button></li>
+        <li><button class="tool-button" type="button" aria-labelledby="tool-claude">
+          <span class="tool-icon" aria-hidden="true"><img src="assets/tools/claude.png" alt="" width="48" height="48"></span>
+          <span class="tool-name" id="tool-claude">Claude</span>
+        </button></li>
+        <li><button class="tool-button" type="button" aria-labelledby="tool-obsidian">
+          <span class="tool-icon" aria-hidden="true"><img src="assets/tools/obsidian.png" alt="" width="48" height="48"></span>
+          <span class="tool-name" id="tool-obsidian">Obsidian</span>
+        </button></li>
+        <li><button class="tool-button" type="button" aria-labelledby="tool-premiere">
+          <span class="tool-icon" aria-hidden="true"><img src="assets/tools/premiere.png" alt="" width="48" height="48"></span>
+          <span class="tool-name" id="tool-premiere">Premiere Pro</span>
+        </button></li>
+        <li><button class="tool-button tool-secret" type="button" aria-labelledby="tool-custom">
+          <span class="tool-icon" aria-hidden="true"><span>?</span></span>
+          <span class="tool-name" id="tool-custom">Custom tools</span>
+          <span class="tool-particles" aria-hidden="true"></span>
+        </button></li>
+      </ul>
+    </section>
+    <div class="systems-topics">
+      <article class="ai-case">
+        <span class="pill">MULTIPLE BRANDS</span>
+        <h3>Motion graphics agent</h3>
+        <p>I created and trained a motion graphics agent for multiple brands. It builds editable animations with code, adapting typography, pacing and visual style to each brand’s identity.</p>
+      </article>
+      <article class="ai-case">
+        <span class="pill">END-TO-END AUTOMATION</span>
+        <h3>Autonomous video editing</h3>
+        <p>I built an agent-orchestrated production pipeline for UGC-style and direct-response ads. It connects briefing, footage selection, editing, motion, sound and captions through to delivery. I direct the creative decisions and approve the final result.</p>
+        <ol class="ad-workflow" aria-label="Ad production workflow">
+          <li><span aria-hidden="true">01</span><strong>Brief &amp; brand context</strong></li>
+          <li><span aria-hidden="true">02</span><strong>Footage &amp; editing</strong></li>
+          <li><span aria-hidden="true">03</span><strong>Motion, sound &amp; captions</strong></li>
+          <li><span aria-hidden="true">04</span><strong>Review &amp; delivery</strong></li>
+        </ol>
+      </article>
+      <article class="ai-case">
+        <span class="pill">CUSTOM TOOLS</span>
+        <h3>A connected creative operation</h3>
+        <p>I develop tools for captions, quality checks and delivery, supported by structured brand knowledge. A custom dashboard brings agent activity and production progress together so I can oversee the workflow.</p><p class="ai-next-project">I’m developing a system to automatically generate ad creatives for digital marketing, with a focus on UGC-style ads and direct-to-consumer (DTC) campaigns.</p>
+      </article>
+    </div>
+  </div><div class="journey-footer"><a href="#computer-science">← <span>Back</span></a><span class="journey-marker">03 / 03</span><a href="#contato"><span>Let’s talk</span> →</a></div></section>
+    <section class="panel contact" id="contato" aria-labelledby="contact-title"><p class="eyebrow">06 / LET’S TALK</p><div class="contact-main"><span class="contact-star" aria-hidden="true">✳</span><h2 id="contact-title">Your idea.<br>The next<br><i>play.</i></h2><button type="button" class="contact-cta" data-copy-contact aria-controls="contact-popover" aria-expanded="false">Tell me about your project <span aria-hidden="true">↗</span></button><button type="button" class="email" data-copy-contact aria-controls="contact-popover" aria-expanded="false">joao@verona.media</button></div><div class="contact-footer"><span>JOÃO VERONA © 2027</span><a href="#inicio">BACK TO TOP ↑</a></div></section>
+  </main></div>
+  <footer class="transport"><span class="footer-label">PORTFOLIO / 2027</span><div class="progress" role="progressbar" aria-label="Portfolio progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div><div class="transport-controls"><span class="page-counter">01 / 06</span><button class="previous" aria-label="Previous section">←</button><button class="next" aria-label="Next section">→</button></div><span class="scroll-hint">SCROLL TO EXPLORE ↓</span></footer>
+  <aside class="contact-popover" id="contact-popover" aria-label="Business inquiries" hidden>
+    <div class="contact-popover-top"><span class="eyebrow">BUSINESS INQUIRIES</span><button type="button" class="dismiss-contact" aria-label="Close contact">×</button></div>
+    <h2>Let’s make something.</h2>
+    <p>For projects, opportunities and collaborations.</p>
+    <div class="contact-address"><input type="text" readonly value="joao@verona.media" aria-label="Contact email" spellcheck="false"><button type="button" class="copy-email"><span>Copy email</span><span aria-hidden="true">↗</span></button></div>
+    <p class="copy-status" role="status" aria-live="polite" aria-atomic="true"></p>
+  </aside>
+
+
+
+
+  <dialog class="video-dialog" aria-labelledby="video-title"><div class="dialog-top"><h2 id="video-title">Video</h2><button class="close-dialog" aria-label="Close video">Close <span aria-hidden="true">×</span></button></div><video class="player" controls playsinline preload="none"></video><p class="video-error" hidden>This video could not be loaded. <a href="#" target="_blank" rel="noopener">Open video directly ↗</a></p></dialog>
+</body>
 </html>
