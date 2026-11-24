@@ -8,20 +8,33 @@ const isMobile = window.matchMedia('(max-width: 800px)');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let current = 0;
 const initialHash = location.hash;
+const scrollEnd = () => Math.max(0, panels[panels.length - 1].offsetLeft);
+const journeyPosition = () => Math.max(0, Math.min(window.scrollY, scrollEnd()));
 function goTo(index) {
   index = Math.max(0, Math.min(index, panels.length - 1));
   const behavior = reducedMotion.matches ? 'instant' : 'smooth';
   if (isMobile.matches) panels[index].scrollIntoView({ behavior, block: 'start' });
-  else window.scrollTo({ top: panels[index].offsetLeft, behavior });
+  else window.scrollTo({ top: Math.min(panels[index].offsetLeft, scrollEnd()), behavior });
+}
+function followAnchor(hash) {
+  const target = document.getElementById(hash.slice(1));
+  const panel = target?.closest('.panel');
+  const index = panels.indexOf(panel);
+  if (index < 0) return false;
+  goTo(index);
+  if (target !== panel) {
+    if (isMobile.matches) target.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
+    else {
+      const body = panel.querySelector('.slide-body');
+      if (body) body.scrollTo({ top: target.getBoundingClientRect().top - body.getBoundingClientRect().top + body.scrollTop, behavior: reducedMotion.matches ? 'instant' : 'smooth' });
+    }
+  }
+  history.replaceState(null, '', hash);
+  return true;
 }
 document.querySelectorAll('a[href^="#"]').forEach(link => {
-  const index = panels.findIndex(panel => `#${panel.id}` === link.getAttribute('href'));
-  if (index < 0) return;
-  link.addEventListener('click', event => {
-    event.preventDefault();
-    goTo(index);
-    history.replaceState(null, '', `#${panels[index].id}`);
-  });
+  if (!document.getElementById(link.hash.slice(1))?.closest('.panel')) return;
+  link.addEventListener('click', event => { event.preventDefault(); followAnchor(link.hash); });
 });
 // The document owns vertical scrolling. Its distance drives the horizontal
 // gallery, so a mouse wheel, trackpad and scrollbar all follow the same path.
@@ -30,8 +43,8 @@ function sizeScrollJourney() {
     document.body.style.height = '';
     track.style.transform = '';
   } else {
-    document.body.style.height = `${window.innerHeight + track.scrollWidth - track.clientWidth}px`;
-    track.style.transform = `translateX(${-window.scrollY}px)`;
+    document.body.style.height = `${window.innerHeight + scrollEnd()}px`;
+    track.style.transform = `translateX(${-journeyPosition()}px)`;
   }
   requestUpdate();
 }
@@ -48,9 +61,9 @@ function updatePosition() {
   if (isMobile.matches) {
     current = panels.reduce((best, panel, index) => Math.abs(panel.getBoundingClientRect().top - 90) < Math.abs(panels[best].getBoundingClientRect().top - 90) ? index : best, 0);
   } else {
-    current = panels.reduce((best, panel, index) => Math.abs(panel.offsetLeft - window.scrollY) < Math.abs(panels[best].offsetLeft - window.scrollY) ? index : best, 0);
-    if (window.scrollY + track.clientWidth >= track.scrollWidth - 8) current = panels.length - 1;
-    const percent = Math.max(0, Math.min(100, (window.scrollY / (track.scrollWidth - track.clientWidth)) * 100));
+    current = panels.reduce((best, panel, index) => Math.abs(panel.offsetLeft - journeyPosition()) < Math.abs(panels[best].offsetLeft - journeyPosition()) ? index : best, 0);
+    if (journeyPosition() >= scrollEnd() - 8) current = panels.length - 1;
+    const percent = Math.max(0, Math.min(100, (journeyPosition() / Math.max(1, scrollEnd())) * 100));
     progress.firstElementChild.style.width = `${percent}%`;
     progress.setAttribute('aria-valuenow', String(Math.round(percent)));
   }
@@ -71,7 +84,7 @@ function requestUpdate() {
   if (queued) return;
   queued = true;
   requestAnimationFrame(() => {
-    if (!isMobile.matches) track.style.transform = `translateX(${-window.scrollY}px)`;
+    if (!isMobile.matches) track.style.transform = `translateX(${-journeyPosition()}px)`;
     updatePosition(); queued = false;
   });
 }
@@ -114,7 +127,7 @@ dialog.addEventListener('click', event => { if (event.target === dialog) { const
 dialog.addEventListener('close', () => { player.pause(); player.removeAttribute('src'); player.load(); });
 player.addEventListener('error', () => { if (player.getAttribute('src')) videoError.hidden = false; });
 sizeScrollJourney();
-if (initialHash) { const index = panels.findIndex(panel => `#${panel.id}` === (initialHash === '#trabalhos' ? '#projetos' : initialHash)); if (index >= 0) requestAnimationFrame(() => goTo(index)); }
+if (initialHash) requestAnimationFrame(() => followAnchor(initialHash === '#trabalhos' ? '#projetos' : initialHash));
 
 // Keep the logo artwork intact; tilt its image plane toward the pointer.
 const logoImages = [...document.querySelectorAll('.metallic-logo')];

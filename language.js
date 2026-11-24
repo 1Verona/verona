@@ -100,7 +100,7 @@ const portugueseCopy = {
   "03 / KNOWLEDGE & DATA": "03 / CONHECIMENTO E DADOS",
   "A knowledge base that grows.": "Uma base que evolui.",
   "I organize brand guidelines, creative references and production history in structured knowledge bases. Feedback and workflow data help me refine the process over time.": "Organizo diretrizes de marca, referências criativas e histórico de produção em bases de conhecimento estruturadas. Uso feedbacks e dados do fluxo para aprimorar o processo ao longo do tempo.",
-  "06 / LET’S TALK": "06 / VAMOS CONVERSAR",
+  "05 / LET’S TALK": "05 / VAMOS CONVERSAR",
   "Your idea.": "Sua ideia.",
   "The next": "O próximo",
   "Tell me about your project": "Me conte sobre seu projeto",
