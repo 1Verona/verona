@@ -1,4 +1,5 @@
 const track = document.querySelector('.track');
+const viewport = document.querySelector('.gallery-viewport');
 const panels = [...document.querySelectorAll('.panel')];
 const navLinks = [...document.querySelectorAll('.rail a')];
 const progress = document.querySelector('.progress');
@@ -22,6 +23,7 @@ function followAnchor(hash) {
   const index = panels.indexOf(panel);
   if (index < 0) return false;
   goTo(index);
+  if (target.id === 'inicio') panel.querySelector('.intro-body').scrollTop = 0;
   if (target !== panel) {
     if (isMobile.matches) target.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
     else {
@@ -68,7 +70,9 @@ function updatePosition() {
     progress.setAttribute('aria-valuenow', String(Math.round(percent)));
   }
   navLinks.forEach((link, index) => {
-    const selected = link.hash === `#${panels[current].dataset.rail || panels[current].id}`;
+    const homeBody = document.querySelector('.intro-body');
+    const activeRail = current === 0 && !isMobile.matches && homeBody.scrollTop > homeBody.clientHeight / 2 ? 'projetos' : (panels[current].dataset.rail || panels[current].id);
+    const selected = link.hash === `#${activeRail}`;
     link.classList.toggle('active', selected);
     if (selected) link.setAttribute('aria-current', 'location');
     else link.removeAttribute('aria-current');
@@ -84,11 +88,17 @@ function requestUpdate() {
   if (queued) return;
   queued = true;
   requestAnimationFrame(() => {
-    if (!isMobile.matches) track.style.transform = `translateX(${-journeyPosition()}px)`;
+    if (!isMobile.matches) {
+      viewport.scrollLeft = 0;
+      track.scrollLeft = 0;
+      track.style.transform = `translateX(${-journeyPosition()}px)`;
+    }
     updatePosition(); queued = false;
   });
 }
 track.addEventListener('scroll', requestUpdate, { passive: true });
+viewport.addEventListener('scroll', requestUpdate, { passive: true });
+document.querySelector('.intro-body').addEventListener('scroll', requestUpdate, { passive: true });
 window.addEventListener('scroll', () => {
   requestUpdate();
 }, { passive: true });
